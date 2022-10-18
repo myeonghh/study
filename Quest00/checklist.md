@@ -16,33 +16,33 @@
   * <p>git은 사용자의 코드와 이력을 기록하고 관리하도록 돕는 버전 관리 시스템이다. git은 클라우드가 아닌 사용자의 로컬 시스템에 설치되고 관리되기 때문에 다른 개발자와 작업을 공유하기 어렵다. 반면에 GitHub는 git을 사용하는 프로젝트를 지원하는 웹 호스팅 서비스이며, 클라우드 서버를 통해 로컬 저장소의 코드를 업로드하고 공유할 수 있다. </p>
 
 * ### <b>git의 clone/add/commit/push/pull/branch/stash 명령은 무엇이며 어떨 때 이용하나요? 그리고 어떻게 사용하나요?</b>
-  * <p> clone : 원격의 git 저장소의 데이터를 로컬 저장소로 그대로 복제, 다운로드 하는 명령이다. <br> - <i>$ git clone GitHub Repository주소</i>
+  * <p> <b>clone</b> : 원격의 git 저장소의 데이터를 로컬 저장소로 그대로 복제, 다운로드 하는 명령이다. <br> - <i>$ git clone GitHub Repository주소</i>
   </p>
 
-    * <p> add : commit을 하기전에 작업 디렉토리 상의 변경 내용을 스테이징 에어리어에 추가하는 명령이다. <br> - <i>$ git add 디렉토리경로/파일명.확장자 ==> 지정한 파일의 변경내용만 추가하고 싶을때</i> <br> - <i>$ git add . ==> 모든 변경내용을 추가하고 싶을때</i>
+    * <p> <b>add</b> : commit을 하기전에 작업 디렉토리 상의 변경 내용을 스테이징 에어리어에 추가하는 명령이다. <br> - <i>$ git add 디렉토리경로/파일명.확장자 ==> 지정한 파일의 변경내용만 추가하고 싶을때</i> <br> - <i>$ git add . ==> 모든 변경내용을 추가하고 싶을때</i>
 
   </p>
 
-    * <p> commit : staged된 변경사항들에 대하여 변경을 확정짓고 변경에 대한 기록을 저장하는 명령이다. <br> - <i>$ git commit -m '커밋메세지내용'</i>
+    * <p> <b>commit</b> : staged된 변경사항들에 대하여 변경을 확정짓고 변경에 대한 기록을 저장하는 명령이다. <br> - <i>$ git commit -m '커밋메세지내용'</i>
   </p>
 
-    * <p> push : commit을 통해 내 로컬 저장소에 남은 기록들을 원격 저장소로 보내서 원격 저장소를 업데이트 하는 명령이다. <br> - <i>$ git push <저장소명> <브랜치명></i> <br><i>ex) $ git push origin main</i>
+    * <p> <b>push</b> : commit을 통해 내 로컬 저장소에 남은 기록들을 원격 저장소로 보내서 원격 저장소를 업데이트 하는 명령이다. <br> - <i>$ git push <저장소명> <브랜치명></i> <br><i>ex) $ git push origin main</i>
   </p>
 
-    * <p> pull : 원격저장소의 변경사항들을 로컬 저장소로 가져와서 합치는 명령이다. <br>pull = fetch + merge <br> - <i>$ git pull <저장소명><브랜치명></i><br><i>ex) $ git pull origin main</i><br>- <i>$ git pull <저장소명><원격저장소 브랜치명> : <로컬저장소 브랜치명></i>
+    * <p> <b>pull</b> : 원격저장소의 변경사항들을 로컬 저장소로 가져와서 합치는 명령이다. <br>pull = fetch + merge <br> - <i>$ git pull <저장소명><브랜치명></i><br><i>ex) $ git pull origin main</i><br>- <i>$ git pull <저장소명><원격저장소 브랜치명> : <로컬저장소 브랜치명></i>
   </p>
 
-    * <p> branch : 독립적으로 어떤 작업을 진행하기 위한 작업트리를 다루는 명령이다. <br> - <i>$ git branch 브랜치명 ==> 브랜치 생성</i><br>- <i>$ git checkout 브랜치명 ==> 해당 브랜치로 HEAD이동</i><br>- <i>$ git checkout -b 브랜치명 ==> 브랜치 생성 후 해당 브랜치로 HEAD이동</i><br>- <i>$ git branch -f <브랜치명><특정커밋>  ==> 해당 브랜치를 특정커밋 위치에서 강제 생성/위치변경</i>
+    * <p> <b>branch</b> : 독립적으로 어떤 작업을 진행하기 위한 작업트리를 다루는 명령이다. <br> - <i>$ git branch 브랜치명 ==> 브랜치 생성</i><br>- <i>$ git checkout 브랜치명 ==> 해당 브랜치로 HEAD이동</i><br>- <i>$ git checkout -b 브랜치명 ==> 브랜치 생성 후 해당 브랜치로 HEAD이동</i><br>- <i>$ git branch -f <브랜치명><특정커밋>  ==> 해당 브랜치를 특정커밋 위치에서 강제 생성/위치변경</i>
   </p>
 
-    * <p> stash : 현재 작업중인 변경사항을 임시공간인 스택에 저장해두기 위한 명령이다. 커밋을하고 싶진 않지만 변경사항을 저장해주고 싶을때 사용한다.<br> - <i>$ git stash ==> 새로운 stash 생성</i><br> - <i>$ git stash list ==> stash 목록확인</i><br> - <i>$ git stash apply stash이름 ==> 해당 stash를 불러오거나, 없다면 가장 최근의 stash를 불러옴 </i><br> - <i>$ git stash drop stash이름 ==> 해당 stash를 제거하거나, 없다면 가장 최근의 stash를 제거</i><br> - <i>$ git stash pop ==> apply와 동시에 drop을 해주는 명령어</i>
+    * <p> <b>stash</b> : 현재 작업중인 변경사항을 임시공간인 스택에 저장해두기 위한 명령이다. 커밋을하고 싶진 않지만 변경사항을 저장해주고 싶을때 사용한다.<br> - <i>$ git stash ==> 새로운 stash 생성</i><br> - <i>$ git stash list ==> stash 목록확인</i><br> - <i>$ git stash apply stash이름 ==> 해당 stash를 불러오거나, 없다면 가장 최근의 stash를 불러옴 </i><br> - <i>$ git stash drop stash이름 ==> 해당 stash를 제거하거나, 없다면 가장 최근의 stash를 제거</i><br> - <i>$ git stash pop ==> apply와 동시에 drop을 해주는 명령어</i>
   </p>
 
 * ### <b>git의 Object, Commit, Head, Branch, Tag는 어떤 개념일까요? git 시스템은 프로젝트의 히스토리를 어떻게 저장할까요?</b>
-  * Object : git이 파일들을 관리하기 위해 만드는 파일
-  * Commit : 스테이징 에어리어 있는 변경사항들을 스냅샷의 형태로 로컬저장소에 저장하는 작업
-  * Head : 현재 체크아웃된 커밋/ 현재 작업중인 커밋/ 작업트리의 가장 최근 커밋
-  * Branch : 독립적으로 어떤 작업을 진행하기 위한 작업트리. 각각의 브랜치는 다른 브랜치의 영향을 받지 않기 때문에, 여러 작업을 동시에 진행할 수 있다.
+  * <b>Object</b> : git이 파일들을 관리하기 위해 만드는 파일
+  * <b>Commit</b> : 스테이징 에어리어 있는 변경사항들을 스냅샷의 형태로 로컬저장소에 저장하는 작업
+  * <b>Head</b> : 현재 체크아웃된 커밋/ 현재 작업중인 커밋/ 작업트리의 가장 최근 커밋
+  * <b>Branch</b> : 독립적으로 어떤 작업을 진행하기 위한 작업트리. 각각의 브랜치는 다른 브랜치의 영향을 받지 않기 때문에, 여러 작업을 동시에 진행할 수 있다.
   * git은 프로젝트의 각 커밋들에 특정 해시값을 붙여서 히스토리를 관리한다. 히스토리를 조회하면 각 커밋의 해시값, 저자 이름/이메일, 커밋한 날짜, 커밋 메시지를 확인할 수 있다.
 * ### <b>리모트 git 저장소에 원하지 않는 파일이 올라갔을 때 이를 되돌리려면 어떻게 해야 할까요?</b>
   1. <b>로컬에서 $ git reset 명령어를 사용해 커밋을 되돌린후 원격 저장소에 강제로 푸시($ git push -f origin main)하는 방법.</b>
