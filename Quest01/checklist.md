@@ -69,7 +69,7 @@
 
   * ><b> `<head>`에 자주 들어가는 엘리먼트들은 어떤 것이 있고, 어떤 역할을 할까요?</b>
   
-    `<head>` 태그안에는 보통 html 문서 전체의 제목을 나타내주는 `<title>` 태그와, 문서의 정보에 대해서 기술 되어있느 `<meta>` 태그가 들어가 있으며, 추가적으로 외부 리소스 파일(대부분 css파일)과 연결해주는 `<link>` 태그( \<link rel="stylesheet" href="my-css-file.css"> ) 와 외부 javascript 파일과 연결해주는 `<script>` 태그( \<script src="jquery-3.6.1.min.js"> ) 가 들어간다. 또한 `<style>` 태그를 작성해서 직접 해당 html문서의 스타일을 변경할 수도 있다.
+    `<head>` 태그안에는 보통 html 문서 전체의 제목을 나타내주는 `<title>` 태그와, 문서의 정보에 대해서 기술 되어있는 `<meta>` 태그가 들어가 있으며, 추가적으로 외부 리소스 파일(대부분 css파일)과 연결해주는 `<link>` 태그( \<link rel="stylesheet" href="my-css-file.css"> ) 와 외부 javascript 파일과 연결해주는 `<script>` 태그( \<script src="jquery-3.6.1.min.js"> ) 가 들어간다. 또한 `<style>` 태그를 작성해서 직접 해당 html문서의 스타일을 변경할 수도 있다.
     <br><br>
     `<meta>` 태그의 속성으로는 문서의 character 인코딩을 특정하는 **charset**( charset="utf-8" )과 메타 요소가 어떤 정보의 형태를 갖고있는지 알려주는 **name**과 실제 메타데이터의 컨테츠를 나타내는 **content**와  content속성에 명시된 값에 대한 HTTP 헤더를 제공하는 **http-equiv** 등이 있다.
   * ><b>시맨틱 태그는 무엇일까요?</b>
