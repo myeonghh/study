@@ -14,199 +14,18 @@
 			width=device-width : 뷰포트의 가로 크기를 기기의 스크린 너비에 맞춤
 			initial-scale=1.0 : 페이지 처음 접속 시 보여질 배율을 1대1로 조정
 		-->
+		<meta name="robots" content="index, nofollow">
+		<!-- 검색엔진 로봇을 제어하기 위함
+			 "index, nofollow" => 검색 결과에 이 페이지를 표시 하지만, 이 페이지안의 링크된 페이지는 검색할 수 없음.
+		-->
 		<title>NAVER</title>
 		<!-- html 문서의 제목-->
 		<script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 		<!-- 아이콘을 삽입하기위한 import -->
 		<!-- TODO: 또 무엇이 필요할까요? -->
-		<style>
-			body {
-					background: #feffff; /* Old browsers */
-					background: -moz-linear-gradient(top,  #feffff 23%, #ddf1f9 52%, #ddf1f9 100%); /* FF3.6-15 */
-					background: -webkit-linear-gradient(top,  #feffff 23%,#ddf1f9 52%,#ddf1f9 100%); /* Chrome10-25,Safari5.1-6 */
-					background: linear-gradient(to bottom,  #feffff 23%,#ddf1f9 52%,#ddf1f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#ddf1f9',GradientType=0 ); /* IE6-9 */
-				
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					align-content: center;
-					justify-content: space-around;
-			}
-			a {
-				text-decoration: none;
-				color: #515659;
-			}
-			button {
-				display: inline-block;
-				border: 0;
-				outline: 0;
-				background-color: white;
-			}
-			header {
-				background-color: white;
-				border-radius: 4px;
-				margin-bottom: 90px;
-				
-			}
-			.header_content {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				align-content: center;
-				margin-top: 50px;
-			}
-			.header_icon {
-   	 			display: flex;
-    			justify-content: space-between;
-			}
-			.header_icon_right {
-				width: 145px;
-				display: flex;
-				justify-content: space-around;
-			}
-			.header_icon_right a{
-				font-size: 13px;
-				font-weight: bolder;
-			}
-			.main_logo {
-    			display: flex;
-    			justify-content: center;
-    			align-items: center;
-				margin: 0 20px 20px 20px;
-			}
-			.search {
-				width: 500px;
-				height: 35px;
-				border: 0.12em solid #0fdf8a;
-				border-radius: 4px;
-				padding: 5px;
-				display: flex;
-  				justify-content: space-between;
-    			align-content: center;
-				align-items: center;
-				
-			}
-			#search_input {
-				width: 380px;
-				height: 30px;
-				border: 0;
-			}
-			#search_input::placeholder {
-				color: #e2e8ec;
-				font-size: 14px;
-			}
-			div.search_icon i {
-				color: #0ae965;
-				font-size: 20px;
-			}
-			nav.header_menu {
-				width: 500px;
-				display: flex;
-    			justify-content: center;
-			}
-			ul.menu_list {
-			    width: 400px;
-				list-style: none;
-				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: space-around;
-				align-content: center;
-				padding: 0;
-			}
-			li.menu_item {
-				
-				margin: 12px 25px 12px 25px;
-			}
-			li.menu_item a {
-				display: flex;
-				align-items: center;
-				flex-direction: column;
-			}
-			.menu_icon {
-				margin-bottom: 7px;
-			}
-			span.menu_title {
-				font-size: 12px;
-				color: #999d9f;
-			}
-			div.main_mddile_con{
-				width: 500px;
-				height: 50px;
-				background-color: white;
-				border-radius: 6px;
-				padding: 15px;
-				margin-top: 8px;
-				margin-bottom: 10px;
-
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-				align-content: center;
-			}
-			div.temperature > a {
-				width: 180px;
-				display: flex;
-				flex-direction: row;
-				justify-content: space-evenly;
-				align-items: center;
-			}
-			.temp_text {
-				display: flex;
-				flex-direction: column;
-			}
-			.temp_text > strong {
-				font-size: 17px;
-			}
-			.temp_text > span {
-				font-size: 14px;
-				color: #686b72;
-			}
-			.temp_icon > i {
-				color: #7cb4fa;
-				
-			}
-			div.ad img {
-				width: 46px;
-				height: 46px;
-				border-radius: 50%;
-			}
-			section.weather {
-				width: 500px;
-				background-color: white;
-				border-radius: 6px;
-				padding: 15px;
-				margin-top: 8px;
-				margin-bottom: 8px;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-around;
-			}
-			.w_header {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-			}
-			.w_header strong {
-				font-size: 17px;
-				font-weight: bolder;
-			}
-			.w_header span {
-				font-size: 15px;
-				color: #6d7076;
-			}
-			i.fa-circle {
-				color: #ffbe0e;
-			}
-			i.fa-cloud-showers-heavy {
-				color: #dedfe3;
-			}
-		</style>
+		<link rel="stylesheet" href="index.css">
+		
 	</head>
 	<body>
 		<header>
@@ -214,23 +33,23 @@
 			<!-- 상단메뉴, 로고, 검색창 등-->
 
 			<!-- 상단 메뉴 아이콘-->
-			<div class="header_icon">
+			<nav class="header_top">
 				<button type="button" onclick="location.href=''"><i class="fas fa-bars fa-lg"></i></button>
 
-				<div class="header_icon_right">
-					<a href="">QR 체크인</a>
-					<a href="">NPay</a>
-					<a href=""><i class="fa-solid fa-inbox"></i></a>
+				<div class="header_top_right">
+					<a href="" id="qr_checkin">QR 체크인</a>
+					<a href="" id="npay"><span>N</span>Pay</a>
+					<a href="" id="inbox"><i class="fa-solid fa-inbox"></i></a>
 				</div>
-			</div>
+			</nav>
 
 			<div class="header_content">
 				<!-- 네이버 로고-->
 				<div class="main_logo">
-					<img src="naver_logo.png" width="30%" height="20%">
+					<img src="naver_logo.png" alt="네이버로고" width="30%" height="20%">
 				</div>
 				<!-- 검색창 -->
-				<section class="search" >
+				<section class="search">
 					<div class="search_input">
 						<form action="#">
 							<input type="search" placeholder="검색어를 입력해주세요." id="search_input">
@@ -248,7 +67,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798219733OQxDG.png">
+									<img alt="뉴스판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798219733OQxDG.png">
 								</div>
 								<span class="menu_title">뉴스판</span>
 							</a>
@@ -256,7 +75,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798450855mH4jj.png">
+									<img alt="경제지표판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798450855mH4jj.png">
 								</div>
 								<span class="menu_title">경제지표판</span>
 							</a>
@@ -264,7 +83,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798252785Hq1fI.png">
+									<img alt="연예판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798252785Hq1fI.png">
 								</div>
 								<span class="menu_title">연예판</span>
 							</a>
@@ -272,7 +91,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="trend.png">
+									<img alt="트렌드판" src="trend.png">
 								</div>
 								<span class="menu_title">트렌드판</span>
 							</a>
@@ -280,7 +99,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_19411917574.png">
+									<img alt="메일" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_19411917574.png">
 								</div>
 								<span class="menu_title">메일</span>
 							</a>
@@ -288,7 +107,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_191015178706.png">
+									<img alt="카페" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_191015178706.png">
 								</div>
 								<span class="menu_title">카페</span>
 							</a>
@@ -296,7 +115,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_181505455420.png">
+									<img alt="블로그" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_181505455420.png">
 								</div>
 								<span class="menu_title">블로그</span>
 							</a>
@@ -304,7 +123,7 @@
 						<li class="menu_item">
 							<a href="">
 								<div class="menu_icon">
-									<img width="36px" heigth="36px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0427/upload_1619497854375Q53rw.png">
+									<img alt="더보기" src="https://s.pstatic.net/static/www/mobile/edit/2021/0427/upload_1619497854375Q53rw.png">
 								</div>
 							</a>
 						</li>
@@ -314,8 +133,9 @@
 
 		</header>
 		
-		<section class="main">
+		<main>
 			<!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
+			<!-- 날씨요약, 광고-->
 			<div class="main_mddile_con">
 				<div class="temperature">
 					<a href="">
@@ -330,20 +150,20 @@
 				</div>
 				<div class="ad">
 					<a href="">
-						<img src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_193457109113.png">
+						<img alt="" src="https://s.pstatic.net/static/www/mobile/edit/2020/0319/mobile_193457109113.png">
 					</a>
 					<a href="">
-						<img src="https://s.pstatic.net/nnow.phinf/20221024_111/1666588657024b3Mij_PNG/8d1d0d.png?type=m180_240">
+						<img alt="" src="https://s.pstatic.net/nnow.phinf/20221024_111/1666588657024b3Mij_PNG/8d1d0d.png?type=m180_240">
 					</a>
 					<a href="">
-						<img src="https://s.pstatic.net/nnow.phinf/20221024_131/16665886763395UePr_PNG/96a1f5.png?type=m180_240">
+						<img alt="" src="https://s.pstatic.net/nnow.phinf/20221024_131/16665886763395UePr_PNG/96a1f5.png?type=m180_240">
 					</a>
 				</div>
 			</div>
-
+			<!-- 날씨 세부내용 -->
 			<section class="weather">
 				<div class="w_header">
-					<div>
+					<div class="w_header_con">
 						<strong>날씨</strong>
 						<button type="button" onclick="">
 							<span>서울시 잠실동</span>
@@ -355,66 +175,66 @@
 					</div>
 				</div>
 
-				<div class="w_list">
-					<ul>
-						<li class="w_list_item">
+				<div class="w_period">
+					<ul class="w_period_list">
+						<li class="w_period_item">
 							<a href="">시간대별 날씨</a>
 						</li>
-						<li class="w_list_item">
+						<li class="w_period_item">
 							<a href="">시간대별 미세먼지</a>
 						</li>
-						<li class="w_list_item">
+						<li class="w_period_item" id="w_week">
 							<a href="">주간 날씨</a>
 						</li>
-						<li class="w_list_item">
+						<li class="w_period_item">
 							<a href="">주간 미세먼지</a>
 						</li>
 					</ul>
 				</div>
 
-				<div class="w_daylist">
-					<ul>
-						<li>
+				<div class="w_day">
+					<ul class="w_daylist">
+						<li class="w_daylist_item">
 							<span>19°</span><span>|</span><span>8°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>어제</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>22°</span><span>|</span><span>7°</span>
 							<i class="fa-solid fa-circle"></i>
-							<span>오늘</span>
+							<span id="today">오늘</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>17°</span><span>|</span><span>11°</span>
 							<i class="fa-solid fa-cloud-showers-heavy"></i>
 							<span>월</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>18°</span><span>|</span><span>12°</span>
 							<i class="fa-solid fa-cloud-showers-heavy"></i>
 							<span>화</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>17°</span><span>|</span><span>4°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>수</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>19°</span><span>|</span><span>4°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>목</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>19°</span><span>|</span><span>6°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>금</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>19°</span><span>|</span><span>8°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>토</span>
 						</li>
-						<li>
+						<li class="w_daylist_item">
 							<span>18°</span><span>|</span><span>6°</span>
 							<i class="fa-solid fa-circle"></i>
 							<span>일</span>
@@ -422,13 +242,13 @@
 					</ul>
 				</div>
 			</section>
-
+			<!-- 코로나19 관련-->
 			<section class="covid">
 				<ul class="covid_list">
-					<li class="covid_condition">
+					<li class="covid_list_item">
 						<a href="">
 							<div>
-								<i class="fa-solid fa-virus-covid-slash"></i>
+								<i class="fa-solid fa-virus-covid-slash fa-lg" style="color: #5276be;"></i>
 								<strong>코로나19</strong>
 							</div>
 							<div>
@@ -436,10 +256,10 @@
 							</div>
 						</a>
 					</li>
-					<li class="covid_factcheck">
+					<li class="covid_list_item">
 						<a href="">
 							<div>
-								<i class="fa-solid fa-circle-check"></i>
+								<i class="fa-solid fa-circle-check fa-lg" style="color: #f74c3f;"></i>
 								<strong>코로나19 팩트체크</strong>
 							</div>
 							<div>
@@ -449,38 +269,38 @@
 					</li>
 				</ul>
 			</section>
-
+			<!--기념일 정보-->
 			<div class="aniv">
 				<a href="">
-				<img width="30px" height="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Taegeuk.svg/1200px-Taegeuk.svg.png">
-				제 102주년 <strong>대한민국 임시정부 수립일</strong>
+				<img width="30px" height="30px" alt="태극문양" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Taegeuk.svg/1200px-Taegeuk.svg.png">
+				제 102주년 <b>대한민국 임시정부 수립일</b>
 				</a>
 			</div>
-
+			<!-- 네이버앱 광고 -->
 			<div class="app">
 				<div class="app_con">
-					<img width="30px" height="30px" src="data:image/jpeg;base64,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">
-					<span>앱으로 <strong>새로운 네이버</strong>를 더 쾌적하게 사용해 보세요.</span>
+					<img width="30px" height="30px" alt="네이버앱로고" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIOEA8NDg8SDRAODQ8NEQ0PCg8UDhAQIBEWIhYSFRUYHyggGBsxGxUfITEiJSkrLi4uFys3ODMtODQwMCsBCgoKDQ0OGxAQFzIhICUwLS0rKy0rLy0tMC0tLS0rLy0vLSstLS0tMjcwLSstKy0rLSstLTItLS0tLS0tLy0rK//AABEIAOEA4QMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABgcBAwUEAv/EAEIQAAEDAQEKCQsEAQUBAAAAAAABAgMRBAUGBxMhMTRBcbMSUVJhdIGRsdEUFSIjMlRykpShwTM1QmKyU2OC8PEk/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAUGAQMEAv/EADMRAQABAgEICQQDAQEBAAAAAAABAgMFBBESEzEzgbEhMjRBUVJxkcEUImFyobLh0fBD/9oADAMBAAIRAxEAPwC8QAEbuzfbFDVkPrnpkVUX1aLt19RE5Vi1u19tH3T/AAiMqxa3b+2390/widuvitM2eVWJyY14KdqZSDvYjlFzbVm9OhCXsQym7trzR+Oj/XMfIrsrnK7nVyr3nHVVNW2XHNUztl8nlgAAAAAAAAAAAAAAAAAAADLXKmVFVF40WhmJmNhEzGx0LFd20Q+zM5U5L3K5v3Ou1l+UW9lc8el1Wsuyi11a549PNKbkX5MfRlpTFLmxiex18RM5LjFFf23YzfnuTWTYxRV9t6M357kqY5HIioqKipVFRcioTUTExnhNRMTGeGTLIAAgV9V8iyq6zwOpGmRz0X9TmT+veVnEcS1me3bn7e+fH/Oas4jiM3Jm3bn7e+fH/EXIVDAAAAAAAAAAAAAAAAAAAAAAAAAAAd29q+B1lckciq6FVypnVnO3wJPD8QqyedGrpp5JLIMQqyedGrpp5eixo5EciOaqOa5EciouRU1KWymqKoiYnoWymqKozxsfRllG79bq4mLEsWj5kVFVFyozX4ETi2Vaq3oU7Z5IjFsq1dvV07auSviqquAAAAAAAAAAAAAAAAAAAAAAAAAAAAATS8S6tUWyPXNV0dV1a2/ksWD5XnjU1cFgwbKv/jV6x/xMSeT6r76LZjrVKupjlibsTIv3qU3EbusyiqfDo9lNxC7rcoqnw6PZyTicQAAAAAAAAAAAAAAAAAAAAAAAAAAAAB6bmWtYJo5k/g9FX4df2N2T3ZtXaa47pbrF2bVymvwla/lDeP7l21lPiu2sp8VQSv4TnOX+Tld2qUWqdKZlRZnPMy+TywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAw6Xnh/P2nX9XW6/q63MOVygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwGQAAAAKgYV6f9UzmljoYxicado0ZM8eJjE407RoyZ48TGJxp2jRkzx4mMTjTtGjJnjxZSROP7jNJnhmphkAAAMK9E/8ATOZjoYxicado0ZM8eJjE407RoyZ48TGJxp2jRkzx4mMTjTtGjJnjxEkTj+40ZM8PqphkAAAAAABgAAAAAAZT7B2xFs0tURf/AKnZ0/2oy0YPEaifWeULJg0RNmr9viEpxTeSnyoSuaEvox4GKbyU+VBmg0Y8DFN5KfKgzQaMeBim8lPlQZoNGPB5bp3MjtMT4XoiI9MjkRKtdqcnPU1XrFF2iaKu9pv5PRetzRV3qpt1kfZ5HwyJRzFpzKmpycxTr9mqzXNFXcp161VarmirbDQaGoAATXBy1Fbaaoi+nHnTmUsWCx9lXBYMFiJiv1hMsU3kp8qE3mhOaMeBim8lPlQZoNGPAxTeSnyoM0GjHgYpvJT5UGaDRjwcS/ViJYZ1RETLDqT/AFmHDiUR9NXw5wj8UiPpauH9oVmVFVAwwAAAAABgyyAAAAABYODnRZelP3UZZ8H3E+s8oWXBdzV+3xCVEslwAAAARm/W4nlEePjSs0KVomd7NbdutCMxLJNdRpU7YRWJ5HraNOmPuj+Y/wDbFdItSqqwAAJvg29m1fHH3KWLBepVwT+CbK/WOSaE2nQAAA4V++gT7Yd8w4cS7NVw5wj8U7LVw/tCsSoKmAAAAAAAxUMlQFQFQFQAFg4ONFl6W/dRlnwfcT6zyhZMG3NX7fEJWSyXAAAAAAre/W4vk0uPjSkUzlrRMjJOLrzlZxTJNXXrKY6J5qxieSaqvTpjon+JRupEIsqBN8G3s2r44v8AFSxYL1KuCfwTZX6xyTUm04AAAHCv30CfbDvmHDiXZq+HOEfinZauH9oVghUVUKmAqAqAqAqAqBgyAAAAAAWFg40WXpbt1GWfB9xPrPKFkwbc1ft8QlZKpcAAAAADz3QsbLRG+GRKte2i83Eqc9TXdt03KJoq2S13bVN2iaKtkqkunYH2WV8Emdq5HanN1OQp+U2KrNyaJU6/Yqs3Joq7nlOdpTjBr7Nq+OL/ABUsOC9Srgn8F2V+sJqTacAAADhX8aBPth37DhxLs1XDnCPxTstXD+0KvQqKqAAAAAAAAZAAAAAAsLBvosvS37qMs+D7ifWeULHg25q/b4hKyVS4AAAAAACPX43D8rixjE9dCiqz+7dbPDnI/EMki/bzxtjZ/wAR2I5Jr7elT1o2f8Vl9uZc5VJjNOaVWTjBpmtXxxdylhwbqVcE9guyv1jkmxNJwAAAODfxoE+2HfsOHEuzVcOcODFOy1cP7Qq9CpKoyYAAAAAAPmpkKgKgKgKgKgWHg20WXpb91EWbB9xPrPKFkwbc1ft8QlhKpYAAAAAAAAru/q4mJk8riT1cq0kRE9iTj2L37SvYpkmjOtp2Tt9VcxTJNCrW07J2/if9e7Bp7Nq+OLuU34N1KuDowXZX6xyTYmk2AAAHBv50CfbDv2HDiXZquHOHBifZauH9oVcilSVQqAqAqAqAqAqADIAAAAAFh4NtFl6W/dRFmwjcT6zyhY8H3NX7fEJYSqWAAAAAAAANNrszZmPikThNe1WqnMea6IrpmmrZLxcoprpmmrZKO3nXMdZJLZC/KiPicx3LZR1F/G1DgyCxNiquifxm9Edh2T1WKrlE+MZvRKCRSgAAAcG/nQJ9sO/YcOI9mq4c4cGJ9lq4c4VahU1VZMAAAAAAGDLIAAAAAFh4NdFl6W/dRFlwjcT6zyhYsH3NX7fEJaSqWAAADhX33RdZYYp2Z22mOrdTm0dVq9Rx5bemzRFcd0w4cvvVWbcV0+MOrYLYyeNk0a1a9qOTwXnOm3cpuUxVTsl1WrlNyiK6dkvQe2wAAKAAAAABwb+tAtG2HfsOLEezVcOcODE+y1cOcKtQqSrAAAAAAAMAAAAAAAsTBrosvS37qIs2EbifX4hYsH3NX7fEJaSiWAAACLYRtEb0iPucRuK7jii8W3HGEdvHu75PL5NIvqZneiqrkjk1LsXNtI7DMr0KtXVsnmj8NyvVV6urqz/E/wCrLLGsgAAAAAAABwb+tAtG2HfsOLEezVcOcODE+zVcOcKsQqSrAAAAAAAMVMslQFQFQFQAFi4NNFm6W/dRFlwjcT6zyhYsH3NX7fEJaSiVAAACK4RtEb0iPucRuK7jijMW3HGFbFYjoVtZl5F3vKYsRIvroURFrnezU78KWjD8r11GjVthZcOyvW0aFXWj+Y8UnJFJAAAAAAAOBf3+32jbDv2HFiPZquHOHBifZquHOFWIVNVyoCoCoCoCoCoGAAAAAABlYuDTRZulv3URZcI3E+vxCw4Ruav2+IS4lEqAAAEVwj6G3pEfc4jcV3HFGYtuOMK2Kwrj0XPtr7NKyeJaOYteZya2rzKhusXqrVcV0tlm7VariunbC4LlXQZaomTxrVr0za2rravOW+1dpu0RVSttm9Tdoiunves2NoAAAAAHAv7/AG+0bYd/GcWI9mq4c4cOJdmq4c4VWhU1XAwAAAAABgyyAAAAABY2DPRZulv3URZMJ3E+vxCw4Ruav2+IS4lEqAAAEVwkaG3pEfc4jcU3HFGYtuOMK1KyrgBIryrueSTYp6+pnVEdXMx+p/4XqJPDcq1VehVsnmkcPyrU16M9WefitJFLKsoAAAAAHAv8/b7Rtg38ZxYj2arhzhw4l2arhzhVSFUVcAAAAAABgAAAAAAFj4MtFm6W/dRFkwncT6/ELDhG5q/b4hLiUSoAAARTCRobekR9ziNxTccUZi244wrUrKuAGFAsi8K72Pj8lldWWFPQVVyyR+KZiy4bleso0Ktscliw3KtZTq6p6Y2fmEuJNKAAAAAj9/n7faNsG/jOLEezVcOcOHEuzVcOcKqQqisAYAAAAAAwZZAAAAAAsfBlok3TH7qIseE7ifX4hYMI3NX7fEJeSiVAAACKYSdDb0iPucR2KbjijMV3HGFaFZV0AAbrHanwSMmjXgvjcjkX8LzGy1dqt1xVS927lVuqKqdsLhuHdRlshZPHr9FzdbHpnapbbF6m9RFdK15PfpvW4rp/9L3m5vAAACP3+/t9o2wb+M4sQ7NVw5w4cS7NVw5wqlCqqwAAAAAAAwGQAAAAAN0FrljRWxzSRoq8JWxzPairx0Rc+T7G2i9cojNTVMPdNyunopqmPSZhs85T+8z/AFUvievqr3nn3etdd88+8nnKf3mf6qXxH1V7zz7muu+efeTzlP7zP9VL4j6q9559zXXfPPvJ5yn95n+ql8R9Ve88+5rrvnn3lrmtcsicGSaSRK14L53ubXjoqnmq/crjNVVM8Xmq5XVGaqqZ9ZlpNTwAAAG2C1SR1SOWSJFWqpHM9qKvGtFym2i9cojNTVMPdNddPVmY9JzNvnKf3mf6qXxPX1V7zz7vWuu+efeTzlP7zP8AVS+I+qveefc113zz7yecp/eZ/qpfEfVXvPPua675595POU/vM/1UviPqr3nn3Ndd88+8viW2yvRWPnle1aVa+0SOauXJVFWmcxVfu1RmqqmY9XmbtdUZpqmeMtBpeAAAAAAAGDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADL28FVaudFVF7TMxmnMzMZpzPkwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD3ebH8Ru1FTbqam++mx4i1zspRFkWRvwuWv5p1GzLLervVRx92zK7ervVR+c/u5RyucAAAAAAAAAAAAAAAAAAAAAAAAAAAAA33PsqzyxwtzyPazqVcq9hstUTXXFMd71btzcqiiO9cvmyLkp8qFs1NHgtepo8EYwjXHxkbbYxMsScGRE1s5XUveR+KZPpU6yO7b6I7E7GlTrI7tvorkgEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAATfBxcfhPdbXp6LKsj53fyXqzExheT551s8EthdjPOtnu2LDJ1OPl7EcitclUVFRUVMiprRTExExmliYiYzSqq+69l1jcssSK6zuXIudY15K83EpW8tyKbM6VPV5K7lmRzZnSp6vJGyPcIGAAAAAAAAAAAAAAAAAAAAAAAAAAdm9q9+S3SUSrYmr6yWmb+qc515JklV+r8d8urJclqv1fjvlbljszIY2RRt4LI2o1reJCz0UU0UxTTshZqKKaKYpp2Q3Ht6APiWNr2qx7Uc1yUVrkRUVOJUMVUxVGaWJiJjNKDXevCRayWNeDrxD19H/i7VsUh8owuJ+617IjKMM77XshVvuZNZ1pNE+P+ytXg/NmIm5YuW+tTmRVyzct9eMzyVNTWAAAAAAAAAAAAAAAAAAAAAVA9FjsUs68GGN0q/wBGKqda5kNlFquuc1MZ3ui3VcnNTGdMLh3gucqPtjuA3PimL6S7XauolMnwuZ6bvsk7GGTPTdnN+E+sllZCxsUTEjY1KI1qUQmaKKaI0aYzQmaKKaI0aYzQ3Ht6AAAABotfsLsPFex5r2Kfvi/U61KxlXWVnKes5JyucAAAAAAAAAAAAAAAAAAAD3XI/UQ3WOs22esuG5H6TfhTuLTZ6kLNZ6sPcbW0AAAP/9k=">
+					<span>앱으로 <b>새로운 네이버</b>를 더 쾌적하게 사용해 보세요.</span>
 				</div>
-				<button type="button" onclick="">앱 사용하기</button>
+				<button type="button" onclick="location.href=''">앱 사용하기</button>
 			</div>
-
+			<!-- 네이버 웹툰 -->
 			<div class="webtoon">
-				<strong>웹툰</strong>
+				<b>웹툰</b>
 				<a href=""><i class="fa-solid fa-chevron-down"></i></a>
 			</div>
-
-			<div class="pann">
+			<!-- 네이버 판 -->
+			<section class="pann">
 				<div class="pann_top">
-					<strong>인기 주제 판을 확인해 보세요!</strong>
+					<b>인기 주제 판을 확인해 보세요!</b>
 					<a href="">판관리</a>
 				</div>
 				<div class="pann_con">
 					<ul class="pann_list">
 						<li class="pann_list_item">
 							<a href="">
-								<div class="Pann_list_item_con">
-									<img width="40px" height="40px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fBgliJZxMggoasp2DMM9qtl8o_rJRYXU6_NQ-mIHTsEo2-Dia8vpGZ8fTzErO9Ufzb8&usqp=CAU">
+								<div class="pann_list_item_con">
+									<img alt="영화판" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fBgliJZxMggoasp2DMM9qtl8o_rJRYXU6_NQ-mIHTsEo2-Dia8vpGZ8fTzErO9Ufzb8&usqp=CAU">
 									<span>영화판</span>
 								</div>
 								<i class="fa-solid fa-chevron-right"></i>
@@ -488,8 +308,8 @@
 						</li>
 						<li class="pann_list_item">
 							<a href="">
-								<div class="Pann_list_item_con">
-									<img width="40px" height="40px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620799019973qX1J9.png">
+								<div class="pann_list_item_con">
+									<img alt="뿜판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620799019973qX1J9.png">
 									<span>뿜판</span>
 								</div>
 								<i class="fa-solid fa-chevron-right"></i>
@@ -497,8 +317,8 @@
 						</li>
 						<li class="pann_list_item">
 							<a href="">
-								<div class="Pann_list_item_con">
-									<img width="40px" height="40px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_16207989622495n0Cu.png">
+								<div class="pann_list_item_con">
+									<img alt="웹툰판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_16207989622495n0Cu.png">
 									<span>웹툰판</span>
 								</div>
 								<i class="fa-solid fa-chevron-right"></i>
@@ -506,8 +326,8 @@
 						</li>
 						<li class="pann_list_item">
 							<a href="">
-								<div class="Pann_list_item_con">
-									<img width="40px" height="40px" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798450855mH4jj.png">
+								<div class="pann_list_item_con">
+									<img alt="경제M판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798450855mH4jj.png">
 									<span>경제M판</span>
 								</div>
 								<i class="fa-solid fa-chevron-right"></i>
@@ -516,28 +336,26 @@
 
 					</ul>
 				</div>
-			</div>
-
+			</section>
+			<!-- 업데이트 안내 -->
 			<div class="notice">
 				<div class="notice_con">
 					<span>알립니다</span> <strong>네이버앱 업데이트 사전 안내</strong>
 				</div>
 				<a><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
-		</section>
+		</main>
 
 		<footer>
 			<!-- footer : 바닥글로 회사정보, 저작권 등이 들어감.-->
 			<!-- TODO: 하단의 여러 가지 링크들은 어떻게 처리하면 좋을까요? -->
-			<div class="footerinfo">
-				<div>
-					<a href="">로그인</a> | <a href="">전체서비스</a> | <a href="">PC버전</a>
-				</div>
-				<div>
-					<a href="">이용약관</a> | <a href=""><strong>개인정보처리방침</strong></a> | <a href="">고객센터</a>
-				</div>
-				<div>NAVER</div>
+			<div class="footer_text">
+				<a href="">로그인</a><span>|</span><a href="">전체서비스</a><span>|</span><a href="">PC버전</a>
 			</div>
+			<div class="footer_text">
+				<a href="">이용약관</a><span>|</span><a href=""><strong>개인정보처리방침</strong></a><span>|</span><a href="">고객센터</a>
+			</div>
+			<div class="footer_text" id="footer_logo"><a href="">NAVER</a></div>
 		</footer>
 	</body>
 </html>
