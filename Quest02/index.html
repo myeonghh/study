@@ -33,23 +33,24 @@
 			<!-- 상단메뉴, 로고, 검색창 등-->
 
 			<!-- 상단 메뉴 아이콘-->
-			<nav class="header_top">
+			<nav class="header_con">
 				<button type="button" onclick="location.href=''"><i class="fas fa-bars fa-lg"></i></button>
 
-				<div class="header_top_right">
+				<div class="header_con_right">
 					<a href="" id="qr_checkin">QR 체크인</a>
 					<a href="" id="npay"><span>N</span>Pay</a>
 					<a href="" id="inbox"><i class="fa-solid fa-inbox"></i></a>
 				</div>
 			</nav>
-
-			<div class="header_content">
+		</header>
+		<main>
+			<div class="main_top">
 				<!-- 네이버 로고-->
 				<div class="main_logo">
 					<img src="naver_logo.png" alt="네이버로고" width="30%" height="20%">
 				</div>
 				<!-- 검색창 -->
-				<section class="search">
+				<section class="search w_width">
 					<div class="search_input">
 						<form action="#">
 							<input type="search" placeholder="검색어를 입력해주세요." id="search_input">
@@ -62,7 +63,7 @@
 					</div>
 				</section>
 				<!-- 검색창 하단 메뉴-->
-				<nav class="header_menu">
+				<nav class="main_top_menu">
 					<ul class="menu_list">
 						<li class="menu_item">
 							<a href="">
@@ -130,13 +131,9 @@
 					</ul>
 				</nav>
 			</div>
-
-		</header>
-		
-		<main>
 			<!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
 			<!-- 날씨요약, 광고-->
-			<div class="main_mddile_con">
+			<div class="main_mddile_con w_width">
 				<div class="temperature">
 					<a href="">
 						<div class="temp_icon">
@@ -161,7 +158,7 @@
 				</div>
 			</div>
 			<!-- 날씨 세부내용 -->
-			<section class="weather">
+			<section class="weather w_width">
 				<div class="w_header">
 					<div class="w_header_con">
 						<strong>날씨</strong>
@@ -171,7 +168,7 @@
 						</button>
 					</div>
 					<div>
-						<a><i class="fa-solid fa-chevron-up"></i></a>
+						<a><i class="fa-solid fa-chevron-up chevron"></i></a>
 					</div>
 				</div>
 
@@ -243,7 +240,7 @@
 				</div>
 			</section>
 			<!-- 코로나19 관련-->
-			<section class="covid">
+			<section class="covid w_width">
 				<ul class="covid_list">
 					<li class="covid_list_item">
 						<a href="">
@@ -270,27 +267,27 @@
 				</ul>
 			</section>
 			<!--기념일 정보-->
-			<div class="aniv">
+			<div class="aniv w_width">
 				<a href="">
 				<img width="30px" height="30px" alt="태극문양" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Taegeuk.svg/1200px-Taegeuk.svg.png">
 				제 102주년 <b>대한민국 임시정부 수립일</b>
 				</a>
 			</div>
 			<!-- 네이버앱 광고 -->
-			<div class="app">
+			<div class="app w_width">
 				<div class="app_con">
-					<img width="30px" height="30px" alt="네이버앱로고" src="data:image/jpeg;base64,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">
+					<img width="35px" height="35px" alt="네이버앱로고" src="data:image/jpeg;base64,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">
 					<span>앱으로 <b>새로운 네이버</b>를 더 쾌적하게 사용해 보세요.</span>
 				</div>
 				<button type="button" onclick="location.href=''">앱 사용하기</button>
 			</div>
 			<!-- 네이버 웹툰 -->
-			<div class="webtoon">
+			<div class="webtoon w_width">
 				<b>웹툰</b>
-				<a href=""><i class="fa-solid fa-chevron-down"></i></a>
+				<a href=""><i class="fa-solid fa-chevron-down chevron"></i></a>
 			</div>
 			<!-- 네이버 판 -->
-			<section class="pann">
+			<section class="pann w_width">
 				<div class="pann_top">
 					<b>인기 주제 판을 확인해 보세요!</b>
 					<a href="">판관리</a>
@@ -303,7 +300,7 @@
 									<img alt="영화판" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fBgliJZxMggoasp2DMM9qtl8o_rJRYXU6_NQ-mIHTsEo2-Dia8vpGZ8fTzErO9Ufzb8&usqp=CAU">
 									<span>영화판</span>
 								</div>
-								<i class="fa-solid fa-chevron-right"></i>
+								<i class="fa-solid fa-chevron-right chevron"></i>
 							</a>
 						</li>
 						<li class="pann_list_item">
@@ -312,7 +309,7 @@
 									<img alt="뿜판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620799019973qX1J9.png">
 									<span>뿜판</span>
 								</div>
-								<i class="fa-solid fa-chevron-right"></i>
+								<i class="fa-solid fa-chevron-right chevron"></i>
 							</a>
 						</li>
 						<li class="pann_list_item">
@@ -321,7 +318,7 @@
 									<img alt="웹툰판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_16207989622495n0Cu.png">
 									<span>웹툰판</span>
 								</div>
-								<i class="fa-solid fa-chevron-right"></i>
+								<i class="fa-solid fa-chevron-right chevron"></i>
 							</a>
 						</li>
 						<li class="pann_list_item">
@@ -330,7 +327,7 @@
 									<img alt="경제M판" src="https://s.pstatic.net/static/www/mobile/edit/2021/0512/upload_1620798450855mH4jj.png">
 									<span>경제M판</span>
 								</div>
-								<i class="fa-solid fa-chevron-right"></i>
+								<i class="fa-solid fa-chevron-right chevron"></i>
 							</a>
 						</li>
 
@@ -338,11 +335,11 @@
 				</div>
 			</section>
 			<!-- 업데이트 안내 -->
-			<div class="notice">
+			<div class="notice w_width">
 				<div class="notice_con">
 					<span>알립니다</span> <strong>네이버앱 업데이트 사전 안내</strong>
 				</div>
-				<a><i class="fa-solid fa-chevron-right"></i></a>
+				<a><i class="fa-solid fa-chevron-right chevron"></i></a>
 			</div>
 		</main>
 
@@ -355,7 +352,7 @@
 			<div class="footer_text">
 				<a href="">이용약관</a><span>|</span><a href=""><strong>개인정보처리방침</strong></a><span>|</span><a href="">고객센터</a>
 			</div>
-			<div class="footer_text" id="footer_logo"><a href="">NAVER</a></div>
+			<div class="footer_text" id="footer_logo"><a href=""><img src="naver_gray.png" alt="네이버" width="145px"></a></div>
 		</footer>
 	</body>
 </html>
