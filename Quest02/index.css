@@ -17,7 +17,6 @@ body {
     font-family: 'NanumSquareRound';
 }
 
-
 a {
     text-decoration: none;
     color: #515659;
@@ -28,6 +27,7 @@ button {
     border: 0;
     outline: 0;
     background-color: white;
+    cursor: pointer;
 }
 
 ul {
@@ -114,11 +114,9 @@ main, footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    align-content: center;
     margin-top: 65px;
-    margin-bottom: 90px;
+    margin-bottom: 100px;
 }
-
 
 .main_logo {
     display: flex;
@@ -129,19 +127,18 @@ main, footer {
 
 .search {
     height: 36px;
-    border: 0.12em solid #0fdf8a;
+    border: 0.123em solid #0fdf8a;
     border-radius: 4px;
     padding: 6px;
     display: flex;
     justify-content: space-between;
-    align-content: center;
     align-items: center;
 
 }
 
 #search_input {
-    width: 450px;
-    height: 30px;
+    width: 460px;
+    height: 35px;
     border: 0;
     padding-left: 12px;
     font-size: 15px;
@@ -153,7 +150,6 @@ main, footer {
 
 #search_input::placeholder {
     color: #dfe6ea;
-
 }
 
 div.search_icon i {
@@ -167,19 +163,17 @@ ul.menu_list {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    align-content: center;
     padding: 0;
 }
 
 li.menu_item {
-
     margin: 12px 25px 12px 25px;
 }
 
 li.menu_item a {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 }
 
 .menu_icon {
@@ -187,8 +181,8 @@ li.menu_item a {
 }
 
 .menu_icon>img {
-    width: 36px;
-    height: 36px;
+    width: 37px;
+    height: 37px;
 }
 
 span.menu_title {
@@ -474,13 +468,14 @@ div.notice {
     border: 2px solid #0ed15f;
     border-radius: 15px;
     padding: 3px 6px;
-    margin-right: 8px;
+    margin-right: 13px;
     color: #0ed15f;
     font-size: 13px;
     font-weight: bolder;
 }
-.notice_con>strong {
+.notice_con>a {
     color: #54565b;
+    font-weight: bolder;
 }
 
 .chevron {
@@ -496,17 +491,21 @@ footer {
 .footer_text {
     margin-bottom: 5px;  
 }
+
 .footer_text > a, .footer_text > span {
     margin: 0 4px;
     font-size: 15px;
     color: #abafb7;
 }
+
 .footer_text strong {
     color: #707581;
 }
+
 #footer_logo {
     margin-top: 15px;
 }
+
 #footer_logo > a {
     font-size: 22px;
     font-weight: bolder;
