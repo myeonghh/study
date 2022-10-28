@@ -103,7 +103,7 @@ main, footer {
 .w_width {
     width: 580px;
     background-color: white;
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 18px;
     margin-top: 6px;
     margin-bottom: 6px;  
@@ -379,15 +379,19 @@ div.aniv {
 }
 
 div.aniv>a {
-    width: 320px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     color: #747474;
 }
 
 div.aniv b {
     color: #53575a;
+}
+
+.aniv img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
 div.app {
@@ -419,6 +423,16 @@ div.app {
     font-weight: bolder;
 }
 
+.app>button:hover {
+    padding: 6px;
+    border-radius: 3px;
+    border: 2px solid #5da1e2;
+    color: #5da1e2;
+    background-color: #f4f6fd;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
 div.webtoon {
     display: flex;
     justify-content: space-between;
@@ -439,6 +453,7 @@ ul.pann_list {
 
 .pann_list_item {
     background-color: #f5f7f9;
+    border-radius: 4px;
     padding: 10px;
     margin-bottom: 8px;
 }
@@ -457,6 +472,7 @@ ul.pann_list {
 
 .pann_list_item_con > img {
     margin-right: 7px;
+    border-radius: 13px;
 }
 
 div.notice {
