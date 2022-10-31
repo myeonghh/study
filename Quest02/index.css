@@ -23,7 +23,6 @@ a {
 }
 
 button {
-    display: inline-block;
     border: 0;
     outline: 0;
     background-color: white;
@@ -122,7 +121,7 @@ main, footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px 25px 20px;
 }
 
 .search {
@@ -152,12 +151,12 @@ main, footer {
     color: #dfe6ea;
 }
 
-div.search_icon i {
+.search_icon i {
     color: #0fdf8a;
     font-size: 20px;
 }
 
-ul.menu_list {
+.menu_list {
     width: 400px;
     display: flex;
     flex-wrap: wrap;
@@ -166,11 +165,11 @@ ul.menu_list {
     padding: 0;
 }
 
-li.menu_item {
+.menu_item {
     margin: 12px 25px 12px 25px;
 }
 
-li.menu_item a {
+.menu_item a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -190,14 +189,14 @@ span.menu_title {
     color: #999d9f;
 }
 
-div.main_mddile_con {
+.main_mddile_con {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-content: center;
 }
 
-div.temperature>a {
+.temperature>a {
     width: 180px;
     display: flex;
     justify-content: space-evenly;
@@ -223,7 +222,7 @@ div.temperature>a {
 
 }
 
-div.ad img {
+.ad img {
     width: 46px;
     height: 46px;
     border-radius: 50%;
@@ -263,14 +262,14 @@ i.fa-cloud-showers-heavy {
     height: 40px;
 }
 
-ul.w_period_list {
+.w_period_list {
     margin-top: 25px;
     padding: 4px;
     display: flex;
     justify-content: start;
 }
 
-li.w_period_item>a {
+.w_period_item>a {
     padding: 10px;
     margin: 3px;
     background-color: #f4f6fd;
@@ -280,19 +279,19 @@ li.w_period_item>a {
     color: #73767d;
 }
 
-li.w_period_item>a:hover {
+.w_period_item>a:hover {
     background-color: #7b97cc;
     color: white;
     font-weight: bolder;
 }
 
-ul.w_daylist {
+.w_daylist {
     padding: 3px;
     display: flex;
     justify-content: space-around;
 }
 
-li.w_daylist_item {
+.w_daylist_item {
     height: 130px;
     display: flex;
     flex-direction: column;
@@ -343,7 +342,7 @@ section.covid {
     padding-bottom: 3px; 
 }
 
-ul.covid_list {
+.covid_list {
     width: 420px;
     padding-left: 15px;
     display: flex;
@@ -373,18 +372,18 @@ ul.covid_list {
     color: #797c82;
 }
 
-div.aniv {
+.aniv {
     display: flex;
     justify-content: center;
 }
 
-div.aniv>a {
+.aniv>a {
     display: flex;
     align-items: center;
     color: #747474;
 }
 
-div.aniv b {
+.aniv b {
     color: #53575a;
 }
 
@@ -394,7 +393,7 @@ div.aniv b {
     margin-right: 10px;
 }
 
-div.app {
+.app {
     display: flex;
     justify-content: space-between;
 }
@@ -433,7 +432,7 @@ div.app {
     font-weight: bolder;
 }
 
-div.webtoon {
+.webtoon {
     display: flex;
     justify-content: space-between;
 }
@@ -444,7 +443,7 @@ div.webtoon {
     margin-bottom: 20px;
 }
 
-ul.pann_list {
+.pann_list {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -475,7 +474,7 @@ ul.pann_list {
     border-radius: 13px;
 }
 
-div.notice {
+.notice {
     display: flex;
     justify-content: space-between;
 }
