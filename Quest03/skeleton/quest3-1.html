@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        먼저 공백과 별 조합의 규칙을 찾아야함!
+
+        줄수 => 5
+
+            *      => 1번째 줄 : 공백 4개 별 1개 
+           ***     => 2번째 줄 : 공백 3개 별 3개
+          *****    => 3번째 줄 : 공백 2개 별 5개
+         *******   => 4번째 줄 : 공백 1개 별 7개
+        *********  => 5번째 줄 : 공백 0개 별 9개
+
+        공백 수 => 전체 줄수 - 해당 줄수 => (lineNum - i)
+        별 수 => (해당 줄수 * 2) - 1 => (i * 2) - 1
+
+        */
+
+        var lineNum = Number(prompt("줄 숫자를 입력해주세요!"));
+
+        function makeStar(lineNum){
+            if(lineNum < 1){
+                alert(" 1보다 큰 수를 입력해주세요!");
+            }
+            else{
+                var star = "";
+                for(var i = 1; i <= lineNum; i++){  //=> 전체 줄 수만큼 반복
+                    for(var j = 1; j <= lineNum - i; j++){ // => " " 공백 for문으로 출력하기
+                        star += " ";
+                    }
+                    for(var k = 1; k <= (i*2)-1; k++){ // => *(별) for 문으로 출력하기
+                        star += "*";
+                    }
+                star += "\n"; //=> 개행 추가
+                }
+                console.log(star);
+            }
+        };
+
+        makeStar(lineNum); // 함수실행
+    </script>
+</body>
+</html>
