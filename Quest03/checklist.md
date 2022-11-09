@@ -238,13 +238,13 @@
     ```javascript
     function(){
       console.log("Hello, world!");
-    }
+    };
     ```
   - 익명 함수는 리터럴(Literal) 방식으로 변수에 담겨 사용한다. 리터럴(Literal) 방식이란 글자 뜻 그대로 "문자 그대로 읽히는 방식"을 의미하며, 일반적으로 변수에 데이터를 넣을 때 사용하는 방식이 리터럴 방식이다.
     ```javascript
     let sayHello = function(){
       console.log("Hello, world!");
-    }
+    };
 
     sayHello(); // => "Hello, world!" 출력
     ```
@@ -254,7 +254,7 @@
 
     let sayHello = function() {
       console.log("Hello, world!");
-    }
+    };
       ```
     #### ❓ **호이스팅이란?**  
     호이스팅이란 변수나 함수가 어디서 선언이 되든지간에 최상단에 위치하게 되어 동일 스코프 에서는 어디서든 참조 할수 있다는 것을 말한다.
@@ -272,12 +272,12 @@
      ```javascript
       // 일반 익명 함수
       let func = function(n){
-      return n * n
+      return n * n;
       };
 
       // 화살표 함수
       let arrow = (n) => {
-      return n * n
+      return n * n;
       };  
      ```
 
@@ -285,7 +285,7 @@
   3. #### 본문이  return [식 or 값] 뿐인 경우 { } 와  return 키워드 생략 가능
      ```javascript
       let arrow = (n) => {
-      return n * n
+      return n * n;
       };
 
       let arrow = n => n * n;
@@ -294,7 +294,7 @@
   4. #### 매개변수가 없을 경우에는 괄호 필수
      ```javascript
       let arrow = function () {
-      return new Date()
+      return new Date();
       };
 
       let arrow = () => new Date();
