@@ -26,23 +26,22 @@
 
         var lineNum = Number(prompt("줄 숫자를 입력해주세요!"));
 
-        function makeStar(lineNum){
-            if(lineNum < 1){
+        function makeStar(num){
+            if(num < 1){
                 alert(" 1보다 큰 수를 입력해주세요!");
-            }
-            else{
+            }else{
                 var star = "";
-                for(var i = 1; i <= lineNum; i++){  //=> 전체 줄 수만큼 반복
-                    for(var j = 1; j <= lineNum - i; j++){ // => " " 공백 for문으로 출력하기
+                for(var i = 1; i <= num; i++){  //=> 전체 줄 수만큼 반복
+                    for(var j = 1; j <= num - i; j++){ // => " " 공백 for문으로 출력하기
                         star += " ";
                     }
                     for(var k = 1; k <= (i*2)-1; k++){ // => *(별) for 문으로 출력하기
                         star += "*";
                     }
                 star += "\n"; //=> 개행 추가
-                }
+                };
                 console.log(star);
-            }
+            };
         };
 
         makeStar(lineNum); // 함수실행

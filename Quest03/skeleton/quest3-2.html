@@ -40,39 +40,35 @@
 		// 3. addEventListener 의 익명함수 안에 조건문을 작성해서 조건에 맞게 이벤트 적용(삼항연산자 사용)
 		
 		var row1Squares = document.getElementsByClassName("row1")[0].getElementsByClassName("square");
-		// => 클래스이름이 row1인 요소 안에서 다시 클래스이름이 square인 요소들만 불러오기!
+		var row2Squares = document.getElementsByClassName("row2")[0].getElementsByClassName("square");
+		// => 클래스이름이 각각 row1, row2인 요소 안에서 다시 클래스이름이 square인 요소들만 불러오기!
 
-		console.log(row1Squares); // => HTMLCollection(4) => HTMLCollection 의 형태 (유사배열이라 foreach문을 사용할 수 없음)
-		
-		// 배열 변환없이 바로 일반 for문 사용할때
-		for (var i = 0; i < row1Squares.length; i++) {
-		 	row1Squares[i].addEventListener("click", function (){
+		console.log(row1Squares); //
+		console.log(row2Squares); // => HTMLCollection(4) => HTMLCollection 의 형태 (유사배열이라 foreach문을 사용할 수 없음)
+
+		// 배열 변환없이 바로 일반 for문 사용
+		for (var i = 0; i < row1Squares.length; i++){
+		 	row1Squares[i].addEventListener("click", function(){
 				this.style.backgroundColor != "yellow" ? this.style.backgroundColor = "yellow" : this.style.backgroundColor = "white";
 				// 삼항연산자 : circle 요소의 backgroundColor 가 yellow가 아니면 yellow로 맞으면 white로 변경
-		 	})
-		}
+		 	});
+		};
 
-		
-		var row2Squares = document.getElementsByClassName("row2")[0].getElementsByClassName("square");
-		console.log(row2Squares);
-		
 		// HTMLCollection을 배열로 변환(foreach문 사용하기 위해서)
 		var row2SquaresArr = [];
-		for(i = 0; i < row2Squares.length; i++){
+		for(var i = 0; i < row2Squares.length; i++){
 			row2SquaresArr.push(row2Squares[i]);
-		} 
+		};
 
 		// 배열로 변환 후 forEach문 사용
 		row2SquaresArr.forEach(function(circle){
 			circle.addEventListener("click", function(){
-				circle.className == "square" ? circle.classList.add("enabled") : circle.classList.remove("enabled");
+				circle.className === "square" ? circle.classList.add("enabled") : circle.classList.remove("enabled");
 				// 삼항연산자 : circle 요소의 클래스이름이 "square" 이면 "enabled"이라는 클래스 추가 아니면 "enabled"라는 클래스 삭제
 				//circle.classList.toggle("enabled") => .toggle을 쓰면 조건식 없이도 가능하다. 
-			})
+			});
 		});
 
-
-		
 	</script>
 </body>
 

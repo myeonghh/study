@@ -11,9 +11,9 @@ var imageAltArr = ["Closeup of a human eye", "Rock", "Violet flower",
 var imageObj = {};
 
 //=> 객체 imageObj에 각각 key, value로 추가
-for(i = 0; i < imageAltArr.length; i++){
+for(var i = 0; i < imageAltArr.length; i++){
     imageObj["images/pic" + (i+1) + ".jpg"] = imageAltArr[i];
-}
+};
 
 console.log(imageObj);
 /*
@@ -37,15 +37,15 @@ for(var i = 0; i < imageAltArr.length; i++){
 
     // thumbBar에 있는 이미지를 클릭시 full_img 에 있는 이미지를 클릭한 이미지로 바꾸는 기능을 각 이미지에 추가
     newImage.addEventListener("click", function(){
-        displayedImage.setAttribute("src", this.getAttribute("src")) // displayedImage.src = this.src;
-        displayedImage.setAttribute("alt", this.getAttribute("alt")) // displayedImage.alt = this.alt; 
-    })
+        displayedImage.setAttribute("src", this.getAttribute("src")); // displayedImage.src = this.src;
+        displayedImage.setAttribute("alt", this.getAttribute("alt")); // displayedImage.alt = this.alt; 
+    });
 };
 
 /* Wiring up the Darken/Lighten button */
 // 어두워지게/ 밝게 하는 버튼 이벤트 추가하기!
 btn.addEventListener("click", function(){
-    if(btn.className == "dark"){ // => 버튼의 클래스이름이 "dark"이면
+    if(btn.className === "dark"){ // => 버튼의 클래스이름이 "dark"이면
         btn.setAttribute("class", "light"); // => 클래스 속성값을 "ligth"로 변경
         btn.textContent = "Lighten"; // => 버튼의 텍스트 콘텐츠를 "Ligthen" 으로 변경
         overlay.style.backgroundColor = "rgba(0,0,0,0.5)"; // => overlay 요소의 배경색을 rgba(0,0,0,0.5)으로 변경
@@ -53,5 +53,5 @@ btn.addEventListener("click", function(){
         btn.setAttribute("class", "dark");
         btn.textContent = "Darken";
         overlay.style.backgroundColor = "rgba(0,0,0,0)";
-    }
-})
+    };
+});
