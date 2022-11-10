@@ -38,7 +38,81 @@
     </div>
 
     <script>
-      /** TODO: 여기에 게임이 작동될 수 있도록 스크립트를 짜보세요  */
+      // 1. 자릿수에 맞게 랜덤 숫자를 생성하는 함수 만들기
+      // 2. 숫자를 입력하고 랜덤 숫자의 곱셈과 일치한지 정답여부를 알려주는 함수 만들기
+
+      /**
+      -랜덤숫자 함수
+      Math.random() => 0 ~ 1 사이의 난수 생성
+      Math.floor() => 소수점 제거
+
+      -랜덤 숫자 최대값 최소값 지정하기
+      Math.random()*(최대값 - 최소값) + 최소값
+      
+      -랜덤 숫자 최대값 최소값 지정해서 정수만 뽑기
+      ==>Math.floor(Math.random()*(최대값 - 최소값) + 최소값) + 1  min <= ran < max
+      */
+
+      //변수
+      var ranNum1;
+      var ranNum2;
+
+      var randA = document.getElementById("randA");
+      var randB = document.getElementById("randB");
+      var resultArea = document.getElementsByClassName("resultArea")[0].getElementsByTagName("span")[0];
+      var digitNum = Number(document.getElementById("setDigitNum").value);
+      var guessNum = Number(document.getElementById("guessField").value);
+
+      //버튼
+      var digitSubmit = document.getElementsByClassName("setDigitSubmit")[0];
+      var guessSubmit = document.getElementsByClassName("guessSubmit")[0];
+
+      function makeRanNum(num) {
+        var ranNum = 0;
+        switch(num) {
+          case 1: 
+            ranNum = Math.floor(Math.random()*(9)+1);
+            break;
+          case 2:
+            ranNum = Math.floor(Math.random()*(90)+10);
+            break;
+          case 3:
+            ranNum = Math.floor(Math.random()*(900)+100);
+            break;
+        };
+        console.log(ranNum);
+        return ranNum;
+      };
+    
+      function makeQuest(){
+
+      }
+
+      function answerCheck(num) {
+
+      }
+
+
+      digitSubmit.addEventListener("click", function() {
+        
+        digitNum = Number(document.getElementById("setDigitNum").value);
+        if(digitNum != 1 && digitNum != 2 && digitNum != 3){
+          alert("1부터 3까지의 정수를 입력해주세요.")
+        }else{
+          ranNum1 = makeRanNum(digitNum);
+          ranNum2 = makeRanNum(digitNum);
+          randA.innerHTML = ranNum1;
+          randB.innerHTML = ranNum2;
+        }
+      });
+
+      guessSubmit.addEventListener("click", function(){
+
+        guessNum = Number(document.getElementById("guessField").value);
+
+        ranNum1 * ranNum2 === guessNum ? resultArea.innerHTML = "정답" : resultArea.innerHTML = "오답";
+
+      })
 
     </script>
   </body>
