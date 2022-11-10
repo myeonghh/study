@@ -49,7 +49,7 @@
 		// 배열 변환없이 바로 일반 for문 사용
 		for (var i = 0; i < row1Squares.length; i++){
 		 	row1Squares[i].addEventListener("click", function(){
-				this.style.backgroundColor != "yellow" ? this.style.backgroundColor = "yellow" : this.style.backgroundColor = "white";
+				this.style.backgroundColor !== "yellow" ? this.style.backgroundColor = "yellow" : this.style.backgroundColor = "white";
 				// 삼항연산자 : circle 요소의 backgroundColor 가 yellow가 아니면 yellow로 맞으면 white로 변경
 		 	});
 		};
