@@ -1,119 +1,145 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
 
     <title>구구단 게임</title>
 
     <style>
-      body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-      }
-
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
     </style>
-  </head>
-
-  <body>
+</head>
+<body>
     <h1>구구단 게임</h1>
 
     <li style="margin-bottom:5px;">랜덤값으로 지정할 수 있는 최대 자릿수는 3입니다.</li>
     <li style="margin-bottom:5px;">자릿수를 등록하면 해당 자릿수 크기의 숫자 2개가 랜덤으로 표시 됩니다.</li>
     <li style="margin-bottom:5px;">랜덤으로 표시되는 2개 숫자의 곱셈값을 기록하세요.</li>
     <div class="setDigitForm">
-      <label for="setDigitNum">자릿수를 설정해주세요: </label>
-      <input type="text" id="setDigitNum" class="setDigitNum">
-      <input type="submit" value="등록" class="setDigitSubmit">
+        <label for="setDigitNum">자릿수를 설정해주세요: </label>
+        <input type="text" id="setDigitNum" class="setDigitNum">
+        <input type="submit" value="등록" class="setDigitSubmit">
     </div>
-	
+
     <div class="form" style="margin-top:40px;">
-      <sapn id="randA">랜덤값A</sapn> X <sapn id="randB">랜덤값B</sapn> =  <input type="text" id="guessField" class="guessField">
-      <input type="submit" value="정답확인" class="guessSubmit">
+        <sapn id="randA">랜덤값A</sapn> X <sapn id="randB">랜덤값B</sapn> = <input type="text" id="guessField"
+            class="guessField">
+        <input type="submit" value="정답확인" class="guessSubmit">
     </div>
 
     <div class="resultArea" style="margin-top:40px;">
-      <span>정답여부는 여기에!!</span>
+        <span>정답여부는 여기에!!</span>
     </div>
 
     <script>
-      // 1. 자릿수에 맞게 랜덤 숫자를 생성하는 함수 만들기
-      // 2. 숫자를 입력하고 랜덤 숫자의 곱셈과 일치한지 정답여부를 알려주는 함수 만들기
+        // 1. 자릿수에 맞게 랜덤 숫자를 생성하는 함수 만들기
+        // 2. 숫자를 입력하고 랜덤 숫자의 곱셈과 일치한지 정답여부를 알려주는 함수 만들기
 
-      /**
-      -랜덤숫자 함수
-      Math.random() => 0 ~ 1 사이의 난수 생성
-      Math.floor() => 소수점 제거
-
-      -랜덤 숫자 최대값 최소값 지정하기
-      Math.random()*(최대값 - 최소값) + 최소값
-      
-      -랜덤 숫자 최대값 최소값 지정해서 정수만 뽑기
-      ==>Math.floor(Math.random()*(최대값 - 최소값) + 최소값) + 1  min <= ran < max
-      */
-
-      //변수
-      var ranNum1;
-      var ranNum2;
-
-      var randA = document.getElementById("randA");
-      var randB = document.getElementById("randB");
-      var resultArea = document.getElementsByClassName("resultArea")[0].getElementsByTagName("span")[0];
-      var digitNum = Number(document.getElementById("setDigitNum").value);
-      var guessNum = Number(document.getElementById("guessField").value);
-
-      //버튼
-      var digitSubmit = document.getElementsByClassName("setDigitSubmit")[0];
-      var guessSubmit = document.getElementsByClassName("guessSubmit")[0];
-
-      function makeRanNum(num) {
-        var ranNum = 0;
-        switch(num) {
-          case 1: 
-            ranNum = Math.floor(Math.random()*(9)+1);
-            break;
-          case 2:
-            ranNum = Math.floor(Math.random()*(90)+10);
-            break;
-          case 3:
-            ranNum = Math.floor(Math.random()*(900)+100);
-            break;
-        };
-        console.log(ranNum);
-        return ranNum;
-      };
-    
-      function makeQuest(){
-
-      }
-
-      function answerCheck(num) {
-
-      }
-
-
-      digitSubmit.addEventListener("click", function() {
+        /**
+        -랜덤숫자 함수
+        Math.random() => 0 ~ 1 사이의 난수 생성
+        Math.floor() => 소수점 제거
+  
+        -랜덤 숫자 최대값 최소값 지정하기
+        Math.random()*(최대값 - 최소값) + 최소값
         
-        digitNum = Number(document.getElementById("setDigitNum").value);
-        if(digitNum != 1 && digitNum != 2 && digitNum != 3){
-          alert("1부터 3까지의 정수를 입력해주세요.")
-        }else{
-          ranNum1 = makeRanNum(digitNum);
-          ranNum2 = makeRanNum(digitNum);
-          randA.innerHTML = ranNum1;
-          randB.innerHTML = ranNum2;
-        }
-      });
+        -랜덤 숫자 최대값 최소값 지정해서 정수만 뽑기
+        ==>Math.floor(Math.random()*(최대값 - 최소값) + 최소값) + 1  min <= ran < max
+        */
 
-      guessSubmit.addEventListener("click", function(){
+        //변수
+        var ranNum1;
+        var ranNum2;
+        var digitNum;
+        var guessNum;
 
-        guessNum = Number(document.getElementById("guessField").value);
+        // DOM
+        var randA = document.getElementById('randA');
+        var randB = document.getElementById('randB');
+        var resultArea = document.getElementsByClassName('resultArea')[0].getElementsByTagName('span')[0];
+        var digitNumField = document.getElementById('setDigitNum');
+        var guessNumField = document.getElementById('guessField');
 
-        ranNum1 * ranNum2 === guessNum ? resultArea.innerHTML = "정답" : resultArea.innerHTML = "오답";
+        //버튼
+        var digitSubmitBtn = document.getElementsByClassName('setDigitSubmit')[0];
+        var guessSubmitBtn = document.getElementsByClassName('guessSubmit')[0];
+        
+        // 자릿수를 받아서 랜덤 숫자를 생성해주는 함수
+        function makeRanNum(num) {
+            var ranNum = 0;
+            switch (num) {
+                case 1:
+                    ranNum = Math.floor(Math.random() * (9) + 1);
+                    break;
+                case 2:
+                    ranNum = Math.floor(Math.random() * (90) + 10);
+                    break;
+                case 3:
+                    ranNum = Math.floor(Math.random() * (900) + 100);
+                    break;
+                default:
+                    ranNum;
+                    break;
+            };
+            console.log(ranNum);
+            return ranNum;
+        };
 
-      })
+        function btnOn(btn){
+            btn.disabled = false;
+        };
+
+        function btnOff(btn){
+            btn.disabled = true;
+        };
+
+        btnOff(guessSubmitBtn); // => 자릿수를 설정하기 전에는 정답확인 버튼을 비활성화
+
+        digitSubmitBtn.addEventListener('click', function () {
+
+            digitNum = Number(digitNumField.value);
+            ranNum1 = makeRanNum(digitNum);
+            ranNum2 = makeRanNum(digitNum);
+            console.log(ranNum1 * ranNum2);
+            resultArea.innerHTML = '<span>정답여부는 여기에!!</span>'
+            guessNumField.value = '';
+
+            if (ranNum1 === 0 || ranNum2 === 0) {
+                alert('1부터 3까지의 정수를 입력해주세요.')
+                
+                randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
+                randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
+                digitNumField.value = '';
+                digitNumField.focus();
+
+            } else {
+                
+                randA.innerHTML = ranNum1; // => ranA 안의 텍스트에 ranNum1 입력
+                randB.innerHTML = ranNum2; // => ranA 안의 텍스트에 ranNum2 입력
+                btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
+                guessNumField.focus();
+            };
+        });
+
+        guessSubmitBtn.addEventListener("click", function () {
+
+            guessNum = Number(guessNumField.value);
+            if(ranNum1 * ranNum2 === guessNum){
+                resultArea.innerHTML = '<h3>정답입니다!</h3>'
+                btnOff(guessSubmitBtn);
+                digitNumField.focus();
+            }else{
+                resultArea.innerHTML = '<h3>틀렸습니다. 다시 풀어보세요!</h3>';
+                guessNumField.focus();
+            }
+        });
 
     </script>
-  </body>
+</body>
+
 </html>

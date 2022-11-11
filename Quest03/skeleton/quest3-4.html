@@ -49,8 +49,93 @@
 		5. 176 - 전부 맞으므로 승리 (resultArea 안에 1줄 추가  5회: 3S 승리!)     
       */
       	
-      /** TODO: 여기에 게임이 작동될 수 있도록 스크립트를 짜보세요  */
-      
+        // 1. 랜덤값으로 세자리의 숫자를 지정
+        // 1-2. 랜덤값 각각의 숫자는 0이 나올 수 없으며, 서로 중복이 안되게 한다.
+        // 2. 사용자가 임의의 세자리를 입력해서 맞는지 결과를 확인
+        // 2-2. 회별로 입력한 숫자와 지정된 숫자를 비교해서 상황을 결과창에 나타내줌.
+        // 2-3. 기회는 9번
+        var ranNum;
+        var ranNumArr = [];
+        var chance;
+        var resultAreaText;
+        var strike;
+        var ball;
+        var guessValuesArr;
+
+        var guessField = document.getElementById("guessField");
+        var resultArea = document.getElementsByClassName("resultArea")[0];
+        var resultAreaDefault = document.getElementsByClassName("resultArea")[0].getElementsByTagName('span')[0];
+        var gameStartBtn = document.getElementsByClassName('setDigitSubmit')[0];
+        var guessSubmitBtn = document.getElementsByClassName('guessSubmit')[0];
+        
+        function btnOn(btn){
+            btn.disabled = false;
+        };
+
+        function btnOff(btn){
+            btn.disabled = true;
+        };
+
+        function makeRanNum(){
+            for(var i = 0; i < 3; i++){
+                ranNum = Math.floor(Math.random() * (9) + 1);
+
+                if(ranNumArr.indexOf(ranNum) === -1){
+                    ranNumArr.push(ranNum);
+                }else{
+                    i--;
+                };
+
+                if(ranNumArr.length > 3){
+                    ranNumArr.splice(0, 3);
+                };
+            };
+        };
+
+
+        btnOff(guessSubmitBtn);
+
+        gameStartBtn.addEventListener('click' , function(){
+            chance = 0;
+            resultArea.innerHTML = '<span>정답여부는 여기에!!</span>';
+            guessField.value = '';
+            guessField.focus();
+            btnOn(guessSubmitBtn);
+            makeRanNum();
+
+            console.log(ranNumArr);
+        });
+            
+        guessSubmitBtn.addEventListener('click', function(){
+            chance++;
+            strike = 0;
+            ball = 0;
+            guessField.focus();
+            guessValuesArr = [];
+            guessValuesArr = guessField.value.split('');
+            console.log(guessValuesArr);
+
+            for(var i = 0; i < ranNumArr.length; i++){
+                if(Number(guessValuesArr[i]) === ranNumArr[i]){
+                    strike++;
+                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){
+                    ball++;
+                };
+            };
+
+            if(strike === 3){
+                resultArea.innerHTML += '<h3>'+ chance +'회 => (3S) 축하합니다. 승리하였습니다!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
+                btnOff(guessSubmitBtn);
+            }else{
+                if(chance < 9){
+                    resultArea.innerHTML += '<h3>' + chance + '회 => (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
+                }else{
+                    resultArea.innerHTML += '<h3>' + chance + '회 => (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
+                    resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
+                    btnOff(guessSubmitBtn);
+                };
+            };
+        });
 
     </script>
   </body>
