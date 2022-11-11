@@ -124,13 +124,13 @@
             };
 
             if(strike === 3){
-                resultArea.innerHTML += '<h3>'+ chance +'회 => (3S) 축하합니다. 승리하였습니다!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
+                resultArea.innerHTML += '<h3>'+ chance +'회 => ' + guessField.value + ' (3S) 축하합니다. 승리하였습니다!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
                 btnOff(guessSubmitBtn);
             }else{
                 if(chance < 9){
-                    resultArea.innerHTML += '<h3>' + chance + '회 => (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
+                    resultArea.innerHTML += '<h3>' + chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
                 }else{
-                    resultArea.innerHTML += '<h3>' + chance + '회 => (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
+                    resultArea.innerHTML += '<h3>' + chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
                     resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
                     btnOff(guessSubmitBtn);
                 };
