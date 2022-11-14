@@ -67,68 +67,67 @@
         var gameStartBtn = document.getElementsByClassName('setDigitSubmit')[0];
         var guessSubmitBtn = document.getElementsByClassName('guessSubmit')[0];
         
+        // 버튼을 활성화, 비활성화 해주는 함수
         function btnOn(btn){
             btn.disabled = false;
         };
-
         function btnOff(btn){
             btn.disabled = true;
         };
-
+        
+        // 랜덤 숫자 3개를 만들어서 배열에 담아주는 함수
         function makeRanNum(){
             for(var i = 0; i < 3; i++){
-                ranNum = Math.floor(Math.random() * (9) + 1);
+                ranNum = Math.floor(Math.random() * (9) + 1); // => 1 ~ 9까지의 랜덤숫자 ranNum 생성
 
-                if(ranNumArr.indexOf(ranNum) === -1){
-                    ranNumArr.push(ranNum);
-                }else{
-                    i--;
-                };
-
-                if(ranNumArr.length > 3){
+                // ranNumArr 배열안에 ranNum 숫자가 없을 경우(중복X) 해당 랜덤숫자 ranNumArr 배열에 추가
+                // 배열안에 해당숫자가 존재하는 경우(중복O) i-- 를 해줘서 숫자 세개가 채워질때까지 반복을 유지
+                ranNumArr.indexOf(ranNum) === -1 ? ranNumArr.push(ranNum) : i--;
+                
+                if(ranNumArr.length > 3){ // => 배열안 숫자가 3개가 넘어갈 경우 새로 생긴 숫자 3개만 가져오게 설정
                     ranNumArr.splice(0, 3);
                 };
             };
         };
 
-        btnOff(guessSubmitBtn);
+        btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
 
-        gameStartBtn.addEventListener('click' , function(){
-            chance = 0;
-            resultArea.innerHTML = '<span>정답여부는 여기에!!</span>';
-            guessField.value = '';
-            guessField.focus();
-            btnOn(guessSubmitBtn);
-            makeRanNum();
+        gameStartBtn.addEventListener('click' , function(){ // => 게임시작버튼 클릭 이벤트
+            chance = 0; // => 기회 0으로 초기화
+            resultArea.innerHTML = '<span>정답여부는 여기에!!</span>'; // => 결과정보 텍스트 초기화
+            guessField.value = ''; // => 정답입력창 초기화
+            guessField.focus(); // => 정답입력창으로 키보드 커서 옮기기
+            btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
+            makeRanNum(); // => 랜덤 숫자 생성
 
-            console.log(ranNumArr);
+            console.log('정답 : ' + ranNumArr);
         });
             
-        guessSubmitBtn.addEventListener('click', function(){
-            chance++;
+        guessSubmitBtn.addEventListener('click', function(){ // => 정답확인버튼 클릭 이벤트
+            chance++; // => 클릭할때마다 기회가 1씩 늘어남
             strike = 0;
             ball = 0;
             guessField.focus();
-            guessValuesArr = guessField.value.split('');
+            guessValuesArr = guessField.value.split(''); // => 사용자가 입력한 정답(문자열)을 한 글자씩 나눠서 guessValuesArr 배열에 담아줌 
             console.log(guessValuesArr);
 
             for(var i = 0; i < ranNumArr.length; i++){
-                if(Number(guessValuesArr[i]) === ranNumArr[i]){
+                if(Number(guessValuesArr[i]) === ranNumArr[i]){ // => 각 자릿수(배열 인덱스)에 있는 숫자를 비교해서 일치할때마다 strike를 1추가 
                     strike++;
-                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){
+                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){ // => 랜덤 숫자 3개중에 사용자가 입력한 숫자가 존재할때마다 ball을 1추가
                     ball++;
                 };
             };
 
-            resultText = chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B)';
-            if(strike === 3){
+            resultText = chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball + 'B)'; // => 횟수와 사용자가 입력한 숫자, strke, ball 정보를 알려주는 텍스트
+            if(strike === 3){ // => 위의 반복문을 실행한 결과 strike가 3개 나왔을 경우 승리 텍스트 출력
                 resultArea.innerHTML += '<h3>' + resultText + ' 🎉 축하합니다. 승리하였습니다!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
-                btnOff(guessSubmitBtn);
+                btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
             }else{
                 resultArea.innerHTML += '<h3>' + resultText + '</h3>';
-                if(chance > 8){
-                    resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
-                    btnOff(guessSubmitBtn);
+                if(chance > 8){ // => 9번째 기회에도 정답 맞추기 실패시 패배 텍스트 출력
+                    resultArea.innerHTML += '<h3> 🤪 패배 하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
+                    btnOff(guessSubmitBtn); // => 정답확인 버튼 비 활성화
                 };
             };
         });

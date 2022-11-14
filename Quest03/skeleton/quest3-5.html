@@ -38,50 +38,49 @@
     <script>
         var pcChoice;
         var resultText;
-        var rpsObj = {'가위' : '✌🏻', '바위' : '✊🏻', '보' : '🖐🏻'};
+        var rpsObj = {'가위' : '✌🏻', '바위' : '✊🏻', '보' : '🖐🏻'}; // => 가위, 바위, 보 텍스트와 아이콘을 각자 key와 value로 객체 생성
 
         var resultArea = document.getElementsByClassName('resultArea')[0];
         var gameStartBtn = document.getElementsByClassName('setPrsSubmit')[0];
-        var rpsBtn = document.getElementsByClassName('form')[0].getElementsByTagName('input');
+        var rpsBtns = document.getElementsByClassName('form')[0].getElementsByTagName('input');
 
-        function btnOn(_rpsBtn){
-            for(var i = 0; i < _rpsBtn.length; i++){
-                _rpsBtn[i].disabled = false;
+        // 가위, 바위, 보 버튼을 활성화, 비활성화 해주는 함수
+        function btnOn(_rpsBtns){
+            for(var i = 0; i < _rpsBtns.length; i++){
+                _rpsBtns[i].disabled = false;
             };
-        }
-
-        function btnOff(_rpsBtn){
-            for(var i = 0; i < _rpsBtn.length; i++){
-                _rpsBtn[i].disabled = true;
+        };
+        function btnOff(_rpsBtns){
+            for(var i = 0; i < _rpsBtns.length; i++){
+                _rpsBtns[i].disabled = true;
             };
-        }
+        };
 
-        btnOff(rpsBtn);
+        btnOff(rpsBtns); // 가위, 바위, 보 버튼 비활성화
 
-        gameStartBtn.addEventListener('click', function(){
-            pcChoice = Object.keys(rpsObj)[Math.floor(Math.random() * 3)];
-            console.log(pcChoice);
-            resultArea.innerHTML = '<span>승패여부는 여기에!!</span>';
-            btnOn(rpsBtn);
+        gameStartBtn.addEventListener('click', function(){ // => 게임시작버튼 클릭 이벤트
+            pcChoice = Object.keys(rpsObj)[Math.floor(Math.random() * 3)]; // => rpsObj 객체의 키값들인 '가위', '바위', '보' 중에 랜덤으로 하나 선택
+            console.log('PC선택 : ' + pcChoice);
+            resultArea.innerHTML = '<span>승패여부는 여기에!!</span>'; // => 결과 정보창 텍스트 초기화
+            btnOn(rpsBtns); // => 가위, 바위, 보 버튼 활성화
         });
 
-        for(var i = 0; i < 3; i++){
-            rpsBtn[i].addEventListener('click', function(){
-                console.log(this.value);
-                btnOff(rpsBtn);
-                
-                resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC';
-                if(this.value === pcChoice){
+        for(var i = 0; i < rpsBtns.length; i++){
+            rpsBtns[i].addEventListener('click', function(){ // => 가위, 바위, 보 버튼 클릭 이벤트
+                console.log('USER선택 : ' + this.value);
+                btnOff(rpsBtns); // => 가위, 바위, 보 버튼 비활성화
+
+                resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC'; // => 컴퓨터와 사용자가 각자 선택한 가위, 바위, 보 아이콘을 출력하는 텍스트 
+                if(this.value === pcChoice){ // => 사용자가 선택한 choice가 컴퓨터의 랜덤 choice 와 일치할 경우
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 비겼습니다! 😪 </h3>';
                 }else if(this.value === '가위' && pcChoice === '보' || this.value === '바위' && pcChoice === '가위' || this.value === '보' && pcChoice === '바위'){
-                    resultArea.innerHTML = '<h3>' + resultText + ' ==> 승리했습니다! 😃 </h3>';
-                }else{
+                    resultArea.innerHTML = '<h3>' + resultText + ' ==> 승리했습니다! 😃 </h3>'; // => 사용자가 컴퓨터를 이기는 경우를 나열
+                }else{ // => 사용자가 컴퓨터에게 지는 경우
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 패배했습니다! 😥 </h3>';
                 };
             });
         };
 
-        
     </script>
   </body>
 </html>
