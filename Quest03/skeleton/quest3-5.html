@@ -69,8 +69,8 @@
             rpsBtn[i].addEventListener('click', function(){
                 console.log(this.value);
                 btnOff(rpsBtn);
+                
                 resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC';
-
                 if(this.value === pcChoice){
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 비겼습니다! 😪 </h3>';
                 }else if(this.value === '가위' && pcChoice === '보' || this.value === '바위' && pcChoice === '가위' || this.value === '보' && pcChoice === '바위'){
