@@ -115,16 +115,12 @@
 
             if (ranNum1 === 0 || ranNum2 === 0) {
                 alert('1부터 3까지의 정수를 입력해주세요.');
-                
                 randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
                 randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
                 digitNumField.value = '';
                 btnOff(guessSubmitBtn);
                 focusOn(digitNumField);
-                
-
-            } else {
-                
+            }else{
                 randA.innerHTML = ranNum1; // => ranA 안의 텍스트에 ranNum1 입력
                 randB.innerHTML = ranNum2; // => ranA 안의 텍스트에 ranNum2 입력
                 btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
@@ -132,17 +128,16 @@
             };
         });
 
-        guessSubmitBtn.addEventListener("click", function () {
-
+        guessSubmitBtn.addEventListener("click", function(){
             guessNum = Number(guessNumField.value);
             if(ranNum1 * ranNum2 === guessNum){
-                resultArea.innerHTML = '<h3>정답입니다!</h3>';
+                resultArea.innerHTML = '<h3> 🎉 정답입니다! 🎉</h3>';
                 btnOff(guessSubmitBtn);
                 focusOn(digitNumField);
             }else{
                 resultArea.innerHTML = '<h3>틀렸습니다. 다시 풀어보세요!</h3>';
                 focusOn(guessNumField);
-            }
+            };
         });
 
     </script>
