@@ -82,10 +82,9 @@
                 // ranNumArr 배열안에 ranNum 숫자가 없을 경우(중복X) 해당 랜덤숫자 ranNumArr 배열에 추가
                 // 배열안에 해당숫자가 존재하는 경우(중복O) i-- 를 해줘서 숫자 세개가 채워질때까지 반복을 유지
                 ranNumArr.indexOf(ranNum) === -1 ? ranNumArr.push(ranNum) : i--;
-                
-                if(ranNumArr.length > 3){ // => 배열안 숫자가 3개가 넘어갈 경우 새로 생긴 숫자 3개만 가져오게 설정
-                    ranNumArr.splice(0, 3);
-                };
+            };
+            if(ranNumArr.length > 3){ // => 배열안 숫자가 3개가 넘어갈 경우 새로 생긴 숫자 3개만 가져오게 설정
+                ranNumArr.splice(0, 3);
             };
         };
 
