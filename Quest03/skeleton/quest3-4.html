@@ -64,7 +64,6 @@
 
         var guessField = document.getElementById("guessField");
         var resultArea = document.getElementsByClassName("resultArea")[0];
-        var resultAreaDefault = document.getElementsByClassName("resultArea")[0].getElementsByTagName('span')[0];
         var gameStartBtn = document.getElementsByClassName('setDigitSubmit')[0];
         var guessSubmitBtn = document.getElementsByClassName('guessSubmit')[0];
         
@@ -126,10 +125,8 @@
                 resultArea.innerHTML += '<h3>' + resultText + ' 🎉 축하합니다. 승리하였습니다!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
                 btnOff(guessSubmitBtn);
             }else{
-                if(chance < 9){
-                    resultArea.innerHTML += '<h3>' + resultText + '</h3>';
-                }else{
-                    resultArea.innerHTML += '<h3>'  + resultText + '</h3>';
+                resultArea.innerHTML += '<h3>' + resultText + '</h3>';
+                if(chance > 8){
                     resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
                     btnOff(guessSubmitBtn);
                 };
