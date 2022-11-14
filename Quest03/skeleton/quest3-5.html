@@ -73,7 +73,7 @@
                 resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC'; // => 컴퓨터와 사용자가 각자 선택한 가위, 바위, 보 아이콘을 출력하는 텍스트 
                 if(this.value === pcChoice){ // => 사용자가 선택한 choice가 컴퓨터의 랜덤 choice 와 일치할 경우
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 비겼습니다! 😪 </h3>';
-                }else if(this.value === '가위' && pcChoice === '보' || this.value === '바위' && pcChoice === '가위' || this.value === '보' && pcChoice === '바위'){
+                }else if((this.value === '가위' && pcChoice === '보') || (this.value === '바위' && pcChoice === '가위') || (this.value === '보' && pcChoice === '바위')){
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 승리했습니다! 😃 </h3>'; // => 사용자가 컴퓨터를 이기는 경우를 나열
                 }else{ // => 사용자가 컴퓨터에게 지는 경우
                     resultArea.innerHTML = '<h3>' + resultText + ' ==> 패배했습니다! 😥 </h3>';
