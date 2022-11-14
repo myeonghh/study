@@ -83,7 +83,7 @@
                     ranNum = Math.floor(Math.random() * (900) + 100);
                     break;
                 default:
-                    ranNum;
+                    ranNum = 0;
                     break;
             };
             console.log(ranNum);
@@ -98,6 +98,10 @@
             btn.disabled = true;
         };
 
+        function focusOn(field){
+            field.focus();
+        };
+
         btnOff(guessSubmitBtn); // => 자릿수를 설정하기 전에는 정답확인 버튼을 비활성화
 
         digitSubmitBtn.addEventListener('click', function () {
@@ -110,19 +114,21 @@
             guessNumField.value = '';
 
             if (ranNum1 === 0 || ranNum2 === 0) {
-                alert('1부터 3까지의 정수를 입력해주세요.')
+                alert('1부터 3까지의 정수를 입력해주세요.');
                 
                 randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
                 randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
                 digitNumField.value = '';
-                digitNumField.focus();
+                btnOff(guessSubmitBtn);
+                focusOn(digitNumField);
+                
 
             } else {
                 
                 randA.innerHTML = ranNum1; // => ranA 안의 텍스트에 ranNum1 입력
                 randB.innerHTML = ranNum2; // => ranA 안의 텍스트에 ranNum2 입력
                 btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
-                guessNumField.focus();
+                focusOn(guessNumField);
             };
         });
 
@@ -130,12 +136,12 @@
 
             guessNum = Number(guessNumField.value);
             if(ranNum1 * ranNum2 === guessNum){
-                resultArea.innerHTML = '<h3>정답입니다!</h3>'
+                resultArea.innerHTML = '<h3>정답입니다!</h3>';
                 btnOff(guessSubmitBtn);
-                digitNumField.focus();
+                focusOn(digitNumField);
             }else{
                 resultArea.innerHTML = '<h3>틀렸습니다. 다시 풀어보세요!</h3>';
-                guessNumField.focus();
+                focusOn(guessNumField);
             }
         });
 

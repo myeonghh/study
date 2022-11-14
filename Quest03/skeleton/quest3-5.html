@@ -36,9 +36,52 @@
     </div>
 
     <script>
-      /** TODO: 여기에 게임이 작동될 수 있도록 스크립트를 짜보세요  */
-      
+        var pcChoice;
+        var resultText;
+        var rpsObj = {'가위' : '✌🏻', '바위' : '✊🏻', '보' : '🖐🏻'};
 
+        var resultArea = document.getElementsByClassName('resultArea')[0];
+        var gameStartBtn = document.getElementsByClassName('setPrsSubmit')[0];
+        var rpsBtn = document.getElementsByClassName('form')[0].getElementsByTagName('input');
+
+        function btnOn(_rpsBtn){
+            for(var i = 0; i < _rpsBtn.length; i++){
+                _rpsBtn[i].disabled = false;
+            };
+        }
+
+        function btnOff(_rpsBtn){
+            for(var i = 0; i < _rpsBtn.length; i++){
+                _rpsBtn[i].disabled = true;
+            };
+        }
+
+        btnOff(rpsBtn);
+
+        gameStartBtn.addEventListener('click', function(){
+            pcChoice = Object.keys(rpsObj)[Math.floor(Math.random() * 3)];
+            console.log(pcChoice);
+            resultArea.innerHTML = '<span>승패여부는 여기에!!</span>';
+            btnOn(rpsBtn);
+        });
+
+        for(var i = 0; i < 3; i++){
+            rpsBtn[i].addEventListener('click', function(){
+                console.log(this.value);
+                btnOff(rpsBtn);
+                resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC';
+
+                if(this.value === pcChoice){
+                    resultArea.innerHTML = '<h3>' + resultText + ' ==> 비겼습니다! 😪 </h3>';
+                }else if(this.value === '가위' && pcChoice === '보' || this.value === '바위' && pcChoice === '가위' || this.value === '보' && pcChoice === '바위'){
+                    resultArea.innerHTML = '<h3>' + resultText + ' ==> 승리했습니다! 😃 </h3>';
+                }else{
+                    resultArea.innerHTML = '<h3>' + resultText + ' ==> 패배했습니다! 😥 </h3>';
+                };
+            });
+        };
+
+        
     </script>
   </body>
 </html>

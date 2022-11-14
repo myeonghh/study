@@ -57,10 +57,10 @@
         var ranNum;
         var ranNumArr = [];
         var chance;
-        var resultAreaText;
         var strike;
         var ball;
-        var guessValuesArr;
+        var guessValuesArr = [];
+        var resultText;
 
         var guessField = document.getElementById("guessField");
         var resultArea = document.getElementsByClassName("resultArea")[0];
@@ -92,7 +92,6 @@
             };
         };
 
-
         btnOff(guessSubmitBtn);
 
         gameStartBtn.addEventListener('click' , function(){
@@ -111,7 +110,6 @@
             strike = 0;
             ball = 0;
             guessField.focus();
-            guessValuesArr = [];
             guessValuesArr = guessField.value.split('');
             console.log(guessValuesArr);
 
@@ -123,15 +121,16 @@
                 };
             };
 
+            resultText = chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B)';
             if(strike === 3){
-                resultArea.innerHTML += '<h3>'+ chance +'회 => ' + guessField.value + ' (3S) 축하합니다. 승리하였습니다!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
+                resultArea.innerHTML += '<h3>' + resultText + ' 🎉 축하합니다. 승리하였습니다!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
                 btnOff(guessSubmitBtn);
             }else{
                 if(chance < 9){
-                    resultArea.innerHTML += '<h3>' + chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
+                    resultArea.innerHTML += '<h3>' + resultText + '</h3>';
                 }else{
-                    resultArea.innerHTML += '<h3>' + chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball+ 'B' + ')  </h3>';
-                    resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! ❗ 정답 : ' + ranNumArr.join('') + ' ❗</h3>';
+                    resultArea.innerHTML += '<h3>'  + resultText + '</h3>';
+                    resultArea.innerHTML += '<h3> 패배 하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
                     btnOff(guessSubmitBtn);
                 };
             };
