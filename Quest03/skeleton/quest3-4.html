@@ -110,9 +110,9 @@
             console.log(guessValuesArr);
 
             for(var i = 0; i < ranNumArr.length; i++){
-                if(Number(guessValuesArr[i]) === ranNumArr[i]){ // => 각 자릿수(배열 인덱스)에 있는 숫자를 비교해서 일치할때마다 strike를 1추가 
+                if(Number(guessValuesArr[i]) === ranNumArr[i]){ // => 각 자릿수(배열 인덱스)에 있는 숫자를 비교해서 일치할때마다 strike를 1씩추가 
                     strike++;
-                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){ // => 랜덤 숫자 3개중에 사용자가 입력한 숫자가 존재할때마다 ball을 1추가
+                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){ // => 랜덤 숫자 3개중에 사용자가 입력한 숫자가 존재할때마다 ball을 1씩추가
                     ball++;
                 };
             };
