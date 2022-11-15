@@ -78,7 +78,7 @@
         function resetField(field){
             field.value = ''; // => 입력창 초기화
             field.focus(); // => 해당 입력창으로 키보드 커서 이동
-        }
+        };
 
         // 랜덤 숫자 3개를 만들어서 배열에 담아주는 함수
         function makeRanNum(){
@@ -98,7 +98,7 @@
         function checkDup(arr){ 
             isDup = false;
             for(var i = 0; i < arr.length; i++){
-                if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])){
+                if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])){ //=> 중복 확인 조건
                     isDup = true;
                 };
             };
