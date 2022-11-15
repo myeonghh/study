@@ -68,9 +68,10 @@
         function btnOnOff(btn, onOff){
             onOff === 'on' ? btn.disabled = false : btn.disabled = true;
         };
-        // 해당 입력창으로 커서를 옮겨주는 함수
-        function focusOn(field){
-            field.focus();
+        // 해당 입력창을 초기화 하고 키보드 커서를 해당 입력창으로 옮겨주는 함수
+        function resetField(field){
+            field.value = '';
+            field.focus();    
         };
         // 자릿수를 받아서 랜덤 숫자를 생성해주는 함수
         function makeRanNum(num) {
@@ -86,8 +87,7 @@
                     ranNum = Math.floor(Math.random() * (900) + 100); // => 100 ~ 999
                     break;
                 default:
-                    ranNum = 0; // => 입력한 자리수가 1, 2, 3이 아닐경우
-                    break;
+                    break;// => 입력한 자리수가 1, 2, 3이 아닐경우        
             };
             console.log(ranNum);
             return ranNum;
@@ -102,20 +102,19 @@
             ranNum2 = makeRanNum(digitNum); // => 두번째 랜덤숫자 생성
             console.log('곱셈 정답 = ' + ranNum1 * ranNum2);
             resultArea.innerHTML = '<span>정답여부는 여기에!!</span>' // => 결과정보 텍스트 초기화
-            guessNumField.value = ''; // => 정답입력창 초기화
-
+            resetField(guessNumField);
+            
             if (ranNum1 === 0 || ranNum2 === 0) { // => 사용자가 입력한 자릿수가 1 ~ 3 사이의 정수가 아닌경우
                 alert('1부터 3까지의 정수를 입력해주세요.');
                 randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
                 randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
                 digitNumField.value = ''; // => 자릿수 입력창 초기화
                 btnOnOff(guessSubmitBtn, 'off'); // => 정답확인 버튼 비활성화
-                focusOn(digitNumField);
+                resetField(digitNumField);
             }else{
                 randA.innerHTML = ranNum1; // => ranA 안의 텍스트에 ranNum1 입력
                 randB.innerHTML = ranNum2; // => ranA 안의 텍스트에 ranNum2 입력
-                btnOnOff(guessSubmitBtn, 'on'); // => 정답확인 버튼 활성화
-                focusOn(guessNumField);
+                btnOnOff(guessSubmitBtn, 'on'); // => 정답확인 버튼 활성화    
             };
         });
 
@@ -124,10 +123,10 @@
             if(ranNum1 * ranNum2 === guessNum){ // => 랜덤 숫자 2개의 곱셈이 사용자가 입력한 정답과 일치 할 경우 
                 resultArea.innerHTML = '<h3>🎉 정답입니다! 🎉</h3>';
                 btnOnOff(guessSubmitBtn, 'off');
-                focusOn(digitNumField);
+                resetField(digitNumField);
             }else{ // => 일치하지 않는 경우
                 resultArea.innerHTML = '<h3>😛 틀렸습니다. 다시 풀어보세요!</h3>';
-                focusOn(guessNumField);
+                resetField(guessNumField);
             };
         });
 
