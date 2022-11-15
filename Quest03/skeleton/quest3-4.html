@@ -29,7 +29,7 @@
     </div>
 	
     <div class="form" style="margin-top:40px;">
-      <input type="text" id="guessField" class="guessField" maxlength="3">
+      <input type="text" id="guessField" class="guessField">
       <input type="submit" value="정답확인" class="guessSubmit">
     </div>
 
@@ -60,6 +60,7 @@
         var ball;
         var guessValuesArr = [];
         var resultText;
+        var isDup;
 
         var guessField = document.getElementById("guessField");
         var resultArea = document.getElementsByClassName("resultArea")[0];
@@ -73,6 +74,11 @@
         function btnOff(btn){
             btn.disabled = true;
         };
+        // 입력창을 초기화해주는 함수
+        function resetField(field){
+            field.value = ''; // => 입력창 초기화
+            field.focus(); // => 해당 입력창으로 키보드 커서 이동
+        }
 
         // 랜덤 숫자 3개를 만들어서 배열에 담아주는 함수
         function makeRanNum(){
@@ -88,45 +94,60 @@
             };
         };
 
+        // 배열을 매개변수로 받아 배열 안 값들의 중복을 확인해주는 함수
+        function checkDup(arr){ 
+            isDup = false;
+            for(var i = 0; i < arr.length; i++){
+                if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])){
+                    isDup = true;
+                };
+            };
+            return isDup;
+        };
+
         btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
 
         gameStartBtn.addEventListener('click' , function(){ // => 게임시작버튼 클릭 이벤트
             chance = 0; // => 기회 0으로 초기화
             resultArea.innerHTML = '<span>정답여부는 여기에!!</span>'; // => 결과정보 텍스트 초기화
-            guessField.value = ''; // => 정답입력창 초기화
-            guessField.focus(); // => 정답입력창으로 키보드 커서 옮기기
+            resetField(guessField); // => 결과 입력창 초기화
             btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
             makeRanNum(); // => 랜덤 숫자 생성
 
             console.log('정답 : ' + ranNumArr);
         });
-            
+        
         guessSubmitBtn.addEventListener('click', function(){ // => 정답확인버튼 클릭 이벤트
-            chance++; // => 클릭할때마다 기회가 1씩 늘어남
-            strike = 0;
-            ball = 0;
-            guessField.focus();
             guessValuesArr = guessField.value.split(''); // => 사용자가 입력한 정답(문자열)을 한 글자씩 나눠서 guessValuesArr 배열에 담아줌 
-            console.log(guessValuesArr);
-
-            for(var i = 0; i < ranNumArr.length; i++){
-                if(Number(guessValuesArr[i]) === ranNumArr[i]){ // => 각 자릿수(배열 인덱스)에 있는 숫자를 비교해서 일치할때마다 strike를 1씩추가 
-                    strike++;
-                }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){ // => 랜덤 숫자 3개중에 사용자가 입력한 숫자가 존재할때마다 ball을 1씩추가
-                    ball++;
-                };
-            };
-
-            resultText = chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball + 'B)'; // => 횟수와 사용자가 입력한 숫자, strke, ball 정보를 알려주는 텍스트
-            if(strike === 3){ // => 위의 반복문을 실행한 결과 strike가 3개 나왔을 경우 승리 텍스트 출력
-                resultArea.innerHTML += '<h3>' + resultText + ' 🎉 축하합니다. 승리하였습니다!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
-                btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
+            if(!Number(guessField.value) || guessField.value.length !== 3 || checkDup(guessValuesArr)){
+                alert('서로 중복되지 않는 세자리의 숫자를 입력해주세요!');
+                resetField(guessField);
             }else{
-                resultArea.innerHTML += '<h3>' + resultText + '</h3>';
-                if(chance > 8){ // => 9번째 기회에도 정답 맞추기 실패시 패배 텍스트 출력
-                    resultArea.innerHTML += '<h3> 🤪 패배하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
-                    btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
+                chance++; // => 클릭할때마다 기회가 1씩 늘어남
+                strike = 0;
+                ball = 0;
+                console.log(guessValuesArr);
+
+                for(var i = 0; i < ranNumArr.length; i++){
+                    if(Number(guessValuesArr[i]) === ranNumArr[i]){ // => 각 자릿수(배열 인덱스)에 있는 숫자를 비교해서 일치할때마다 strike를 1씩추가 
+                        strike++;
+                    }else if(ranNumArr.indexOf(Number(guessValuesArr[i])) !== -1){ // => 랜덤 숫자 3개중에 사용자가 입력한 숫자가 존재할때마다 ball을 1씩추가
+                        ball++;
+                    };
                 };
+
+                resultText = chance + '회 => ' + guessField.value + ' (' + strike + 'S, ' + ball + 'B)'; // => 횟수와 사용자가 입력한 숫자, strke, ball 정보를 알려주는 텍스트
+                if(strike === 3){ // => 위의 반복문을 실행한 결과 strike가 3개 나왔을 경우 승리 텍스트 출력
+                    resultArea.innerHTML += '<h3>' + resultText + ' 🎉 축하합니다. 승리하였습니다!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
+                    btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
+                }else{
+                    resultArea.innerHTML += '<h3>' + resultText + '</h3>';
+                    if(chance > 8){ // => 9번째 기회에도 정답 맞추기 실패시 패배 텍스트 출력
+                        resultArea.innerHTML += '<h3> 🤪 패배하였습니다. 다시 한번 도전해 보세요!! 📌 정답 : ' + ranNumArr.join('') + ' 📌</h3>';
+                        btnOff(guessSubmitBtn); // => 정답확인 버튼 비활성화
+                    };
+                };
+                resetField(guessField); // => 입력창 초기화
             };
         });
 
