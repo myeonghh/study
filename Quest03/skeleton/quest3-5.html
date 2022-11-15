@@ -45,30 +45,25 @@
         var rpsBtns = document.getElementsByClassName('form')[0].getElementsByTagName('input');
 
         // 가위, 바위, 보 버튼을 활성화, 비활성화 해주는 함수
-        function btnOn(_rpsBtns){
+        function btnOnOff(_rpsBtns, onOff){
             for(var i = 0; i < _rpsBtns.length; i++){
-                _rpsBtns[i].disabled = false;
-            };
-        };
-        function btnOff(_rpsBtns){
-            for(var i = 0; i < _rpsBtns.length; i++){
-                _rpsBtns[i].disabled = true;
+                onOff === 'on' ? _rpsBtns[i].disabled = false : _rpsBtns[i].disabled = true;
             };
         };
 
-        btnOff(rpsBtns); // 가위, 바위, 보 버튼 비활성화
+        btnOnOff(rpsBtns, 'off'); // 가위, 바위, 보 버튼 비활성화
 
         gameStartBtn.addEventListener('click', function(){ // => 게임시작버튼 클릭 이벤트
             pcChoice = Object.keys(rpsObj)[Math.floor(Math.random() * 3)]; // => rpsObj 객체의 키값들인 '가위', '바위', '보' 중에 랜덤으로 하나 선택
             console.log('PC선택 : ' + pcChoice);
             resultArea.innerHTML = '<span>승패여부는 여기에!!</span>'; // => 결과 정보창 텍스트 초기화
-            btnOn(rpsBtns); // => 가위, 바위, 보 버튼 활성화
+            btnOnOff(rpsBtns, 'on'); // => 가위, 바위, 보 버튼 활성화
         });
 
         for(var i = 0; i < rpsBtns.length; i++){
             rpsBtns[i].addEventListener('click', function(){ // => 가위, 바위, 보 버튼 클릭 이벤트
                 console.log('USER선택 : ' + this.value);
-                btnOff(rpsBtns); // => 가위, 바위, 보 버튼 비활성화
+                btnOnOff(rpsBtns, 'off'); // => 가위, 바위, 보 버튼 비활성화
 
                 resultText = 'USER ' + rpsObj[this.value] + ' vs ' + rpsObj[pcChoice] + ' PC'; // => 컴퓨터와 사용자가 각자 선택한 가위, 바위, 보 아이콘을 출력하는 텍스트 
                 if(this.value === pcChoice){ // => 사용자가 선택한 choice가 컴퓨터의 랜덤 choice 와 일치할 경우

@@ -54,24 +54,19 @@
         var ranNum2;
         var digitNum;
         var guessNum;
-
         // DOM
         var randA = document.getElementById('randA');
         var randB = document.getElementById('randB');
         var resultArea = document.getElementsByClassName('resultArea')[0].getElementsByTagName('span')[0];
         var digitNumField = document.getElementById('setDigitNum');
         var guessNumField = document.getElementById('guessField');
-
         //버튼
         var digitSubmitBtn = document.getElementsByClassName('setDigitSubmit')[0];
         var guessSubmitBtn = document.getElementsByClassName('guessSubmit')[0];
         
         // 버튼을 활성화, 비활성화 해주는 함수
-        function btnOn(btn){
-            btn.disabled = false;
-        };
-        function btnOff(btn){
-            btn.disabled = true;
+        function btnOnOff(btn, onOff){
+            onOff === 'on' ? btn.disabled = false : btn.disabled = true;
         };
         // 해당 입력창으로 커서를 옮겨주는 함수
         function focusOn(field){
@@ -98,7 +93,7 @@
             return ranNum;
         };
 
-        btnOff(guessSubmitBtn); // => 자릿수를 입력하기 전에는 정답확인 버튼을 비활성화
+        btnOnOff(guessSubmitBtn, 'off'); // => 자릿수를 입력하기 전에는 정답확인 버튼을 비활성화
 
         digitSubmitBtn.addEventListener('click', function () { // => 자릿수 등록버튼 클릭 이벤트
 
@@ -114,12 +109,12 @@
                 randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
                 randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
                 digitNumField.value = ''; // => 자릿수 입력창 초기화
-                btnOff(guessSubmitBtn);
+                btnOnOff(guessSubmitBtn, 'off');
                 focusOn(digitNumField);
             }else{
                 randA.innerHTML = ranNum1; // => ranA 안의 텍스트에 ranNum1 입력
                 randB.innerHTML = ranNum2; // => ranA 안의 텍스트에 ranNum2 입력
-                btnOn(guessSubmitBtn); // => 정답확인 버튼 활성화
+                btnOnOff(guessSubmitBtn, 'on'); // => 정답확인 버튼 활성화
                 focusOn(guessNumField);
             };
         });
@@ -128,7 +123,7 @@
             guessNum = Number(guessNumField.value); // => 사용자가 입력한 정답 숫자로 형변환
             if(ranNum1 * ranNum2 === guessNum){ // => 랜덤 숫자 2개의 곱셈이 사용자가 입력한 정답과 일치 할 경우 
                 resultArea.innerHTML = '<h3>🎉 정답입니다! 🎉</h3>';
-                btnOff(guessSubmitBtn);
+                btnOnOff(guessSubmitBtn, 'off');
                 focusOn(digitNumField);
             }else{ // => 일치하지 않는 경우
                 resultArea.innerHTML = '<h3>😛 틀렸습니다. 다시 풀어보세요!</h3>';
