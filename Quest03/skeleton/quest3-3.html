@@ -54,6 +54,7 @@
         var ranNum2;
         var digitNum;
         var guessNum;
+        var ranNum;
         var minNum;
         var maxNum;
         // DOM
@@ -68,7 +69,7 @@
         
         // 버튼을 활성화, 비활성화 해주는 함수
         function btnOnOff(btn, onOff){
-            onOff === 'on' ? btn.disabled = false : btn.disabled = true;
+            btn.disabled = (onOff === 'on') ? false : true;
         };
         // 해당 입력창을 초기화 하고 키보드 커서를 해당 입력창으로 옮겨주는 함수
         function resetField(field){
@@ -77,18 +78,11 @@
         };
         // 자릿수를 받아서 랜덤 숫자를 생성해주는 함수
         function makeRanNum(num) {
-            var ranNum = 0;
             minNum = Math.pow(10, num-1);
             maxNum = Math.pow(10, num) - minNum;
-            switch (num) { // => 입력한 자리수에 맞춰서 랜덤숫자 생성
-                case 1:
-                case 2:
-                case 3:
-                    ranNum = Math.floor(Math.random() * maxNum + minNum); // => 100 ~ 999
-                    break;
-                default:
-                    break;// => 입력한 자리수가 1, 2, 3이 아닐경우        
-            };
+
+            // => 입력한 자리수가 1, 2, 3 일 경우 ranNum = 랜덤숫자, 아닐경우 ranNum = 0
+            ranNum = (0 < num && num < 4 && Math.floor(num) === num) ? Math.floor(Math.random() * maxNum + minNum) : 0;
             console.log(ranNum);
             return ranNum;
         };
