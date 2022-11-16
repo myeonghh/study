@@ -113,7 +113,6 @@
             console.log('정답 : ' + ranNumArr);
         });
 
-        
         guessSubmitBtn.addEventListener('click', function(){ // => 정답확인버튼 클릭 이벤트
             guessValuesArr = guessField.value.split(''); // => 사용자가 입력한 정답(문자열)을 한 글자씩 나눠서 guessValuesArr 배열에 담아줌
             console.log(guessValuesArr);
@@ -141,7 +140,7 @@
                 }else if(strike === 0 && ball === 0){ // => strike 와 ball 둘다 하나도 없을 경우 out 출력
                     resultArea.innerHTML += '<h3>' + resultText + ' (OUT) </h3>';
                 }else{
-                    resultArea.innerHTML += '<h3>' + resultText  + ' (' + strike + 'S, ' + ball + 'B) </h3>';
+                    resultArea.innerHTML += '<h3>' + resultText + ' (' + strike + 'S, ' + ball + 'B) </h3>';
                 };
 
                 if(chance > 8 && strike !== 3){ // => 9번째 기회에도 정답 맞추기 실패시 패배 텍스트 출력

@@ -54,6 +54,8 @@
         var ranNum2;
         var digitNum;
         var guessNum;
+        var minNum;
+        var maxNum;
         // DOM
         var randA = document.getElementById('randA');
         var randB = document.getElementById('randB');
@@ -76,15 +78,13 @@
         // 자릿수를 받아서 랜덤 숫자를 생성해주는 함수
         function makeRanNum(num) {
             var ranNum = 0;
+            minNum = Math.pow(10, num-1);
+            maxNum = Math.pow(10, num) - minNum;
             switch (num) { // => 입력한 자리수에 맞춰서 랜덤숫자 생성
                 case 1:
-                    ranNum = Math.floor(Math.random() * (9) + 1); // => 1 ~ 9 
-                    break;
                 case 2:
-                    ranNum = Math.floor(Math.random() * (90) + 10); // => 10 ~ 99
-                    break;
                 case 3:
-                    ranNum = Math.floor(Math.random() * (900) + 100); // => 100 ~ 999
+                    ranNum = Math.floor(Math.random() * maxNum + minNum); // => 100 ~ 999
                     break;
                 default:
                     break;// => 입력한 자리수가 1, 2, 3이 아닐경우        
@@ -104,7 +104,7 @@
             resultArea.innerHTML = '<span>정답여부는 여기에!!</span>' // => 결과정보 텍스트 초기화
             resetField(guessNumField);
             
-            if (ranNum1 === 0 || ranNum2 === 0) { // => 사용자가 입력한 자릿수가 1 ~ 3 사이의 정수가 아닌경우
+            if (ranNum1 === 0) { // => 사용자가 입력한 자릿수가 1 ~ 3 사이의 정수가 아닌경우
                 alert('1부터 3까지의 정수를 입력해주세요.');
                 randA.innerHTML = '<sapn id="randA">랜덤값A</sapn>';
                 randB.innerHTML = '<sapn id="randB">랜덤값B</sapn>';
