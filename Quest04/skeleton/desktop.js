@@ -8,7 +8,13 @@ class Icon {
 
 class Folder {
 	/* TODO: Folder 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
-};
+	constructor(){
+		
+	}
+	create(){
+		console.log('확인')
+	}
+}
 
 class Window {
 	/* TODO: Window 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */

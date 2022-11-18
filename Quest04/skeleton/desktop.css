@@ -1,1 +1,66 @@
 /* TODO: 자유롭게 바탕화면 시스템의 CSS를 만들어 보세요! */
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-image: url('images/bgimage2.png');
+    font-family: 'NanumSquareRound';
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.buttonsArea{
+    display: flex;
+    justify-content: center;
+}
+.topButton{
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 5px;
+}
+.folderArea, .iconArea{
+    margin: 15px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.folderName, .iconName{
+    font-size: 15px;	
+}
+.folderImg{
+    width: 70px;
+    height: 70px;
+    margin: 0px;
+}
+.iconImg{
+    width: 70px;
+    height: 70px;
+    margin: 0px;
+}
+.folderWindow{
+    width: 400px;
+    height: 350px;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: whitesmoke;
+}
+.folderHeader{
+    height: 25px;
+    padding: 5px;
+    border-bottom: 2px solid black;
+    background-color: #7F99E2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-weight: bold;
+}
