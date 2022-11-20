@@ -8,9 +8,34 @@
 </head>
 <body>
     <script>
-        let initBtn = document.createElement('button');
-		initBtn.innerHTML = '바탕화면 초기화';
-		desktop.appendChild(initBtn);
+        fileName.addEventListener('dblclick', function(){
+					console.log('파일이름텍스트 요소테스트', fileName);
+					let inputName = document.createElement('input');
+					inputName.setAttribute('type', 'text');
+					inputName.setAttribute('class', 'inputArea');
+					inputName.setAttribute('value', this.innerText);
+					inputName.setAttribute('maxlength', '10');
+					this.appendChild(inputName);
+					inputName.focus();
+
+					
+					console.log('인풋네임!!!!!!!!!!', inputName);
+					inputName.addEventListener('keyup', function(e){
+						if(e.keyCode !== 13){
+							return;
+						};
+						e.preventDefault();
+						// 파일 이름 배열로 만들어주는 함수 호출!
+						makeNameArr(fileNames);
+						console.log('파일이름배열!!!!!!', fileNameTexts);
+						if(fileNameTexts.includes(this.value) && fileName.innerText !== this.value){
+							alert(`다른 파일에서 이미 ${this.value} 이름을 사용중입니다!`);
+						}else{
+							fileName.innerText = this.value;
+							fileName.removeChild(this);							
+						};			
+					});
+				});
     </script>
 </body>
 </html>
