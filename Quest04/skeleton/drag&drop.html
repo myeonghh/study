@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .element{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 5px;
+        }
+        .header{
+            height: 300px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+
+    </div>
+    <div class='container'>
+        <div class='element' style="background-color: red;"></div>
+        <div class='element' style="background-color: yellow;"></div>
+        <div class='element' style="background-color: green;"></div>
+        <div class='element' style="background-color: blue;"></div>
+    </div>
+
+    <script>
+        
+        let elements = document.querySelectorAll('.element');
+       
+        let current = null;
+        let offset = { x: 0, y: 0 };
+        elements.forEach(function(element){
+            element.dataset.left = element.offsetLeft;
+            element.dataset.top = element.offsetTop;
+            console.log('엘리먼트 언로드');
+
+            element.addEventListener('mousedown', function(e){
+                element.style.position = 'relative';
+                
+                current = e.target
+                offset.x = e.offsetX;
+                offset.y = e.offsetY;
+
+                element.addEventListener('mousemove', function(e){
+                    let x = e.pageX;
+                    let y = e.pageY;
+
+                    current.style.left = (x - offset.x - current.dataset.left) + 'px';
+                    current.style.top = (y - offset.y - current.dataset.top) + 'px';                        
+                }) 
+                
+            })
+            element.addEventListener('mouseup', function(e){
+                current = null;
+            })
+        })
+
+        
+ 
+    </script>
+</body>
+</html>

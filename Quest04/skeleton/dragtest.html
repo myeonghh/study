@@ -6,34 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 400px;
+            border: 1px solid gray;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: relative;
+            margin: 5px;
+            cursor: grab;
+        }
+
+        .box:active {
+            cursor: grabbing;
+        }
+    </style>
 </head>
 
 <body>
     <section id="section9">
-        <style>
-            .container {
-                width: 800px;
-                height: 400px;
-                border: 1px solid gray;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .box {
-                width: 100px;
-                height: 100px;
-                background-color: blue;
-                position: absolute;
-                top: 10px;
-                cursor: grab;
-            }
-
-            .box:active {
-                cursor: grabbing;
-            }
-        </style>
         <h1>마우스 이벤트 객체 : 박스의 옵셋 영역 좌표 이용하기</h1>
         <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
             <div class="box"></div>
             <div class="box"></div>
             <div class="box"></div>
@@ -41,10 +46,15 @@
         <div class="status"></div>
     </section>
     <script>
-        window.addEventListener('load', function () {
-            var section = document.querySelector('#section9');
-            var container = section.querySelector('.container');
-            var status = section.querySelector('.status');
+        var container = document.querySelector('.container');
+        var boxs = document.querySelectorAll('.box');  
+         
+        boxs.forEach(function(box){
+                
+            box.dataset.left = box.offsetLeft;
+            box.dataset.top = box.offsetTop;
+            console.log(box.offsetLeft);
+
             var dragging = false;
             var offset = { x: 0, y: 0 };
             var current = null;
@@ -66,10 +76,8 @@
             document.onmousemove = function (e) {
                 console.log(dragging)
                 if (!dragging) return;
-
-                var x = e.pageX - offset.x - left;
-                var y = e.pageY - offset.y - top;
-
+                var x = e.pageX - offset.x - current.dataset.left;
+                var y = e.pageY - offset.y  - current.dataset.top;
                 current.style.left = x + 'px';
                 current.style.top = y + 'px';
 
@@ -80,7 +88,9 @@
                 dragging = false;
             }
 
-        })
+        });
+
+  
     </script>
 </body>
 
