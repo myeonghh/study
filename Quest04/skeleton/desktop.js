@@ -330,7 +330,7 @@ class Folder extends Desktop{
 			closeFolder(closeBtn, folderWindow);
 			
 			// 파일창 드래그 앤 드롭기능 함수 호출
-			this.dragfile(folderWindow)
+			dragfile(folderWindow)
 			
 		});
 	};
