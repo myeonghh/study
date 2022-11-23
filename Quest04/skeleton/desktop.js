@@ -334,6 +334,12 @@ class Folder extends Desktop{
 			
 		});
 	};
+
+	closeFolder(closeBtn, folderWindow){
+		closeBtn.addEventListener('click', function(){
+			folderWindow.parentNode.removeChild(folderWindow);
+	});		
+};
 	
 }
 
