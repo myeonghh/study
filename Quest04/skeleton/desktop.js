@@ -337,17 +337,3 @@ class Folder extends Desktop{
 	
 }
 
-class Window extends Desktop{
-	/* TODO: Window 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
-	constructor(){
-		super();
-		
-	}
-	
-	//폴더 창 열리게 하는 함수 호출!!!!!
-	closeFolder(closeBtn, folderWindow){
-		closeBtn.addEventListener('click', function(){
-			folderWindow.parentNode.removeChild(folderWindow);
-		});		
-	}
-};
