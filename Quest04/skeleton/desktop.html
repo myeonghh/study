@@ -51,41 +51,46 @@
 		});
 		/**----------------------------------------------------------------------------------*/
 
+
+
+		
+
+
 	/** -------------------------------------- 함수 모음----------------------------------------*/
 	
-	// function dragfile(dragItem){
-	// 	dragItem.dataset.left = dragItem.offsetLeft;
-	// 	dragItem.dataset.top = dragItem.offsetTop;
+	function dragfile(dragItem){
+		dragItem.dataset.left = dragItem.offsetLeft;
+		dragItem.dataset.top = dragItem.offsetTop;
 
-	// 	let isDragging = false;
-	// 	let originLeft = null;
-	// 	let originTop = null;
-	// 	let originX = 0;
-	// 	let originY = 0;
+		let isDragging = false;
+		let originLeft = null;
+		let originTop = null;
+		let originX = 0;
+		let originY = 0;
 
-	// 	dragItem.addEventListener('mousedown', function(e){
-	// 		e.preventDefault();
-	// 		isDragging = true;
-	// 		originX = e.clientX;
-	// 		originY = e.clientY;
-	// 		originLeft = dragItem.offsetLeft;
-	// 		originTop = dragItem.offsetTop;
-	// 	});
-	// 	document.addEventListener('mousemove', function(e){
-	// 		e.preventDefault();
-	// 		if(!isDragging){
-	// 			return;
-	// 		}			
-	// 		const diffX = e.clientX - originX;
-	// 		const diffY = e.clientY - originY;		
-	// 		dragItem.style.left = `${originLeft - dragItem.dataset.left + diffX}px`;
-	// 		dragItem.style.top = `${originTop - dragItem.dataset.top + diffY}px`;
-	// 	});
-	// 	document.addEventListener('mouseup', function(e){
-	// 		e.preventDefault();
-	// 		isDragging = false;
-	// 	});
-	// };		
+		dragItem.addEventListener('mousedown', function(e){
+			e.preventDefault();
+			isDragging = true;
+			originX = e.clientX;
+			originY = e.clientY;
+			originLeft = dragItem.offsetLeft;
+			originTop = dragItem.offsetTop;
+		});
+		document.addEventListener('mousemove', function(e){
+			e.preventDefault();
+			if(!isDragging){
+				return;
+			}			
+			const diffX = e.clientX - originX;
+			const diffY = e.clientY - originY;		
+			dragItem.style.left = `${originLeft - dragItem.dataset.left + diffX}px`;
+			dragItem.style.top = `${originTop - dragItem.dataset.top + diffY}px`;
+		});
+		document.addEventListener('mouseup', function(e){
+			e.preventDefault();
+			isDragging = false;
+		});
+	};		
 	function closeFolder(closeBtn, folderWindow){
 			closeBtn.addEventListener('click', function(){
 				folderWindow.parentNode.removeChild(folderWindow);
