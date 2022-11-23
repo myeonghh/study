@@ -13,7 +13,7 @@ body{
     padding: 0;
 }
 .headerTab{
-    height: 35px;
+    height: 37px;
     padding: 0;
     margin: 0 0 20px 0;
     background-color: white;
@@ -21,11 +21,18 @@ body{
     justify-content: flex-start;
     align-items: center;
 }
+.overlay{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
 .tabArea{
     display: flex;
 }
 .tab{
     width: 110px;
+    height: 25px;
     border: 1px solid black;
     padding: 5px;
     margin: 0;
@@ -37,12 +44,16 @@ body{
 .plusTab{
     width: 22px;
 }
+.plusTab:hover{
+    cursor: pointer;
+}
 .closeTabBtn{
     border: none;
     background-color: #C1C1C1;
     border-radius: 7px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bolder;
+    cursor: pointer;
 }
 .main{    
     display: flex;
@@ -61,14 +72,16 @@ body{
     margin-right: 3px;
     border-radius: 5px;
 }
+.topButton:hover{
+    cursor: pointer;
+}
 .folderArea, .iconArea{
     margin: 15px;
     width: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    
+    position: relative;    
 }
 .folderName, .iconName{
     font-size: 15px;	
