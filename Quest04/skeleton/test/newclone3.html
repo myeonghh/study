@@ -91,49 +91,7 @@
 			};
 		};
 	
-		// 폴더 더블 클릭시 창 열리는 함수!!!!!!!!
-		function openFolder(_folders){	
-			_folders.forEach(function(folder){
-				// 폴더 생성시 이벤트 중첩을 막기위해 클론을 생성해서 그 전 요소들을 대체(최신 이벤트만 남겨두기위함)
-				let folderClone = folder.cloneNode(true);
-  				folder.parentNode.replaceChild(folderClone, folder);
-				
-				folderClone.addEventListener('dblclick', function(){
-					// 형제 요소인 폴더이름을 변수에 담음
-					folderName = this.nextSibling;
-					// 폴더 구역 생성
-					let folderWindow = document.createElement('div');
-					folderWindow.setAttribute('class', `folderWindow ${this.alt}`)
-					divOverlay.appendChild(folderWindow);
-
-					// 폴더창 헤더부분 생성
-					let folderHeader = document.createElement('div');
-					folderHeader.setAttribute('class', 'folderHeader');
-					folderHeader.textContent = folderName.innerText;
-					folderWindow.appendChild(folderHeader);
-
-					let closeBtn = document.createElement('button');
-					closeBtn.setAttribute('class', 'closeBtn');
-					closeBtn.textContent = 'X'
-					folderHeader.appendChild(closeBtn);
-
-
-					
-					//folderWindow.innerHTML += `<div class="folderHeader">${folderName.innerText}<button class="closeBtn">X</button></div>`;
-					
-					// 폴더 창 nodeList
-					let folderWindows = document.querySelectorAll('.folderWindow');
-					// 닫기 버튼 nodeList
-					let closeBtns = document.querySelectorAll('.closeBtn')
-	
-					// 닫기버튼 누를시 창 닫는 함수 호출
-					closeFolder(closeBtn, folderWindow);
-
-					// 파일창 드래그 앤 드롭기능 함수 호출
-					dragfile(folderWindow);
-				});
-			});
-		};
+		
 		
 		// 폴더 창에서 x버튼 클릭시 창 닫히는 함수!!!!!!!
 		function closeFolder(_closeBtn, _folderWindow){					
