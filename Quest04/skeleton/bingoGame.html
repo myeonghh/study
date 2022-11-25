@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bingoGame.css">
+</head>
+<body>
+    <header></header>
+    <main id="bingoGame">
+        <section class="user">
+
+        </section>
+        <section class="computer">
+
+        </section>
+    </main>
+    <script>
+        let tableRow;
+        let tableCol;
+        let colInput;
+
+        let tableRows;
+        let tableCols;
+        let tableInput;
+        let inputNum;
+        let userNumArr;
+        let colNumArr;
+        let userchoiceNum;
+        let choiceNumText;
+
+        let bgMainDiv = document.querySelector('#bingoGame');
+        let userDiv = document.querySelector('.user');
+        let computerDiv = document.querySelector('.computer');
+
+
+        let bingoTable = document.createElement('table');
+        bingoTable.setAttribute('class', 'bingoTable');
+        userDiv.appendChild(bingoTable);
+        let cnt = 1;
+        for(let i = 0; i < 5; i++){
+            tableRow = document.createElement('tr');
+            tableRow.setAttribute('class', `row`);
+            bingoTable.appendChild(tableRow);
+            
+            for(let j = 0; j < 5; j++){
+                tableCol = document.createElement('td');
+                tableCol.setAttribute('class', `col`);
+                tableRow.appendChild(tableCol);
+
+                tableCol.innerHTML += 
+                `<input type="text" class="input input${i}${j}" value="${cnt}">`;
+                cnt++;                              
+            };
+        };
+        
+        // 게임 시작버튼 요소 추가
+        let startBtn = document.createElement('button');
+        startBtn.setAttribute('class', 'startBtn');
+        startBtn.innerText = '게임 시작';
+        userDiv.appendChild(startBtn);
+        // 숫자 제출 전체 구역
+        let submitDiv = document.createElement('div');
+        submitDiv.setAttribute('class', 'submitDiv');
+        userDiv.appendChild(submitDiv);
+        // 숫자 제출 인풋창 추가
+        let choiceNumInput = document.createElement('input');
+        choiceNumInput.setAttribute('type', 'text');
+        choiceNumInput.setAttribute('class', 'choiceNumInput');
+        submitDiv.appendChild(choiceNumInput);
+        // 숫자 제출 버튼 추가
+        let submitBtn = document.createElement('button');
+        submitBtn.setAttribute('class', 'submitBtn');
+        submitBtn.innerText = '등록';
+        submitDiv.appendChild(submitBtn);
+
+        /** -------------------------------------------버튼 이벤트 모음------------------------------------------------*/
+        startBtn.addEventListener('click', function(){
+
+            userNumArr = [];
+            addInputNum(bingoTable);
+            console.log(userNumArr);
+            
+            for(let i = 0; i < userNumArr.length; i++){
+                for(let j = 0; j < userNumArr[i].length; j++){
+
+                    if(isNaN(userNumArr[i][j]) || userNumArr[i][j] < 1 || userNumArr[i][j] > 25 || (userNumArr[i].filter(item => item === userNumArr[i][j])).length !== 1){
+                        alert('1부터 25사이의 정수를 모든칸에 중복없이 입력해주세요!');
+                        return;
+                    }
+                }
+            }
+            showInputNum(bingoTable);
+        });
+
+        submitBtn.addEventListener('click', function(){
+            userchoiceNum = Number(choiceNumInput.value);
+            console.log('유저넘어레이', userNumArr);
+            for(let i = 0; i < userNumArr.length; i++){
+                for(let j = 0; j < userNumArr[i].length; j++){
+
+                    if(userchoiceNum === userNumArr[i][j]){
+                        userNumArr[i][j] = 0;
+                        choiceNumText = document.querySelector(`.input${i}${j}`).nextSibling;
+                        console.log('초이스넘텍스트', choiceNumText);
+                        choiceNumText.classList.add('check');
+                    }
+                }
+            }
+        });
+
+
+
+
+        /**--------------------------------------------------------------------------------------------------*/
+        /**-------------------------------------------------함수 모음---------------------------------------------------------*/
+        
+        // 이중배열에 사용자가 입력한 빙고번호를 추가시켜주는 함수
+        function addInputNum(_bingoTable){
+            tableRows = _bingoTable.childNodes;
+
+            tableRows.forEach(tableRow => {
+                tableCols = tableRow.childNodes;
+                colNumArr = [];
+                tableCols.forEach(tableCol => {
+                    
+                    tableInput = tableCol.firstChild;
+                    inputNum = Number(tableInput.value);
+                    colNumArr.push(inputNum);
+                    
+                });
+                console.log('colNumArr', colNumArr);
+                userNumArr.push(colNumArr);
+            });
+        };
+        // 사용자가 입력한 빙고숫자들을 확정받아 보여주는 함수
+        function showInputNum(_bingoTable){
+            tableRows = _bingoTable.childNodes;
+
+            tableRows.forEach(tableRow => {
+                tableCols = tableRow.childNodes;
+
+                tableCols.forEach(tableCol => {
+                    tableInput = tableCol.firstChild;
+  
+                    tableInput.style.display = 'none';
+                    tableInput.parentNode.innerHTML += `<span class="confirmNum">${tableInput.value}</span>`;
+                });
+            });
+        };
+
+
+
+    /**----------------------------------------------------------------------------------------------------*/
+
+    </script>
+</body>
+</html>

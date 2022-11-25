@@ -34,8 +34,7 @@ let iconName;
 class Tab {
 	constructor(){
 		this.createTab();
-		this.plusTab();
-		
+		this.plusTab();		
 	}	
 	createTab(){
 		
