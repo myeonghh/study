@@ -1,17 +1,92 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 
+}
+.winGame{
+    display: none;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    left: 0;
+    top: 0;
+    color: #fff;
+    font-size: 50px;
+    z-index: 10;
+}
 .col{
-    border: 1px solid black;
+    position: relative;
+    border: 2px solid black;
+    width: 75px;
+    height: 75px;
+
+}
+.confirmNum{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    margin-left: 5px;
+    padding: 10px 0px 10px 5px;
     width: 50px;
     height: 50px;
-
+    font-size: 20px;
+    font-weight: bold;
 }
 .input{
-    border: none;
-    width: 45px;
-    height: 45px;
-    margin: 0;
-    padding: 10;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    border: none;    
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    padding: 10px 0px 10px 18px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.user{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+}
+.startBtn{
+    margin: 5px;
+    
+    width: 110px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+.choiceNumInput{
+    margin: 5px;
+    width: 60px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+.submitBtn{
+    margin: 5px;
+    width: 65px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: bold;
 }
 .check{
-    background-color: paleturquoise;
+    background-color: salmon;
 }

@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="./bingoGame.css">
 </head>
 <body>
-    <header></header>
+    <header><h1>빙고 게임</h1></header>
+    <div class="winGame">
+        🎉축하합니다 승리하였습니다🎉    
+    </div>
+    <div class="loseGame"></div>
     <main id="bingoGame">
         <section class="user">
 
@@ -18,6 +22,7 @@
         </section>
     </main>
     <script>
+        // 변수 선언
         let tableRow;
         let tableCol;
         let colInput;
@@ -28,14 +33,21 @@
         let inputNum;
         let userNumArr;
         let colNumArr;
-        let userchoiceNum;
+        let userSubmitNum;
         let choiceNumText;
+        let bingoCnt;
+        let leftCrossZeroCnt;
+        let rightCrossZeroCnt;
+        let isDup;
 
+        // DOM
         let bgMainDiv = document.querySelector('#bingoGame');
         let userDiv = document.querySelector('.user');
         let computerDiv = document.querySelector('.computer');
+        let winGameDiv = document.querySelector('.winGame');
 
 
+        // 빙고게임 틀 만들기
         let bingoTable = document.createElement('table');
         bingoTable.setAttribute('class', 'bingoTable');
         userDiv.appendChild(bingoTable);
@@ -76,47 +88,9 @@
         submitBtn.innerText = '등록';
         submitDiv.appendChild(submitBtn);
 
-        /** -------------------------------------------버튼 이벤트 모음------------------------------------------------*/
-        startBtn.addEventListener('click', function(){
 
-            userNumArr = [];
-            addInputNum(bingoTable);
-            console.log(userNumArr);
-            
-            for(let i = 0; i < userNumArr.length; i++){
-                for(let j = 0; j < userNumArr[i].length; j++){
-
-                    if(isNaN(userNumArr[i][j]) || userNumArr[i][j] < 1 || userNumArr[i][j] > 25 || (userNumArr[i].filter(item => item === userNumArr[i][j])).length !== 1){
-                        alert('1부터 25사이의 정수를 모든칸에 중복없이 입력해주세요!');
-                        return;
-                    }
-                }
-            }
-            showInputNum(bingoTable);
-        });
-
-        submitBtn.addEventListener('click', function(){
-            userchoiceNum = Number(choiceNumInput.value);
-            console.log('유저넘어레이', userNumArr);
-            for(let i = 0; i < userNumArr.length; i++){
-                for(let j = 0; j < userNumArr[i].length; j++){
-
-                    if(userchoiceNum === userNumArr[i][j]){
-                        userNumArr[i][j] = 0;
-                        choiceNumText = document.querySelector(`.input${i}${j}`).nextSibling;
-                        console.log('초이스넘텍스트', choiceNumText);
-                        choiceNumText.classList.add('check');
-                    }
-                }
-            }
-        });
-
-
-
-
-        /**--------------------------------------------------------------------------------------------------*/
-        /**-------------------------------------------------함수 모음---------------------------------------------------------*/
         
+        /**-------------------------------------------------함수 모음---------------------------------------------------------*/
         // 이중배열에 사용자가 입력한 빙고번호를 추가시켜주는 함수
         function addInputNum(_bingoTable){
             tableRows = _bingoTable.childNodes;
@@ -135,6 +109,7 @@
                 userNumArr.push(colNumArr);
             });
         };
+
         // 사용자가 입력한 빙고숫자들을 확정받아 보여주는 함수
         function showInputNum(_bingoTable){
             tableRows = _bingoTable.childNodes;
@@ -150,10 +125,162 @@
                 });
             });
         };
+        
+        // 배열에서 선택한 숫자를 0으로 바꿔주고 배경색 달라지는 클래스를 추가해주는 함수!!
+        function changeChoiceNum(userNumArr, userSubmitNum){
+            for(let i = 0; i < userNumArr.length; i++){
+                for(let j = 0; j < userNumArr[i].length; j++){
+                    // 유저가 제출한 숫자와 이전에 등록했던 숫자가 일치시 
+                    if(userSubmitNum === userNumArr[i][j]){
+                        userNumArr[i][j] = 0;
+                        choiceNumText = document.querySelector(`.input${i}${j}`).nextSibling;
+                        
+                        choiceNumText.parentNode.classList.add('check');
+                    };
+                };
+            };
+        };
+        
+
+        // 빙고 숫자 세주는 함수!!!!!!!!
+        function countBingo(userNumArr){
+            bingoCnt = 0;
+            leftCrossZeroCnt = 0;
+            rightCrossZeroCnt = 0;
+
+            for(let i = 0; i < userNumArr.length; i++){
+                let rowZeroCnt = 0;
+
+                // 왼쪽 대각 0 숫자 세기
+                if(userNumArr[i][i] === 0){
+                    leftCrossZeroCnt++;
+                };
+                // 오른 쪽 대각 0 숫자 세기
+                if(userNumArr[i][userNumArr.length - (i+1)] === 0){
+                    rightCrossZeroCnt++;
+                };
+                // 열 0 숫자 세기
+                for(let j = 0; j < userNumArr[i].length; j++){
+                    if(userNumArr[j][i] === 0){
+                        rowZeroCnt++;
+                    };
+                };
+                // 행 빙고카운트
+                if((userNumArr[i].filter(item => item === 0)).length === 5){
+                    bingoCnt++;
+                };
+                // 열 빙고 카운트
+                if(rowZeroCnt === 5){
+                    bingoCnt++;
+                };
+                // 왼쪽 대각 빙고카운트
+                if(leftCrossZeroCnt === 5){
+                    bingoCnt++;
+                };
+                // 오른쪽 대각 빙고카운트
+                if(rightCrossZeroCnt === 5){
+                    bingoCnt++;
+                };
+            };            
+            console.log('bingoCnt', bingoCnt);
+            return bingoCnt;
+        };
+
+        // 처음 입력한 숫자 중복체크해주는 함수!!!!!
+        function checkDup(userNumArr){
+            let totalNumArr = []
+            isDup = false;
+            for(let i = 0; i < userNumArr.length; i++){
+                for(let j = 0; j < userNumArr[i].length; j++){
+                    totalNumArr.push(userNumArr[i][j]);
+                };
+            };
+            let setArr = new Set(totalNumArr);
+            if(totalNumArr.length !== setArr.size){
+                isDup = true;
+            }
+            return isDup;
+        };
 
 
 
-    /**----------------------------------------------------------------------------------------------------*/
+
+
+        /**----------------------------------------------------------------------------------------------------*/
+        /** -------------------------------------------버튼 이벤트 모음------------------------------------------------*/
+        // 등록 버튼 비활성화
+        submitBtn.disabled = true;
+
+        startBtn.addEventListener('click', function(){
+
+            userNumArr = [];
+            addInputNum(bingoTable);
+            console.log('전체 배열', userNumArr);
+            console.log('col배열', colNumArr);
+            console.log('함수 확인하기', checkDup(userNumArr));
+            for(let i = 0; i < userNumArr.length; i++){
+                for(let j = 0; j < userNumArr[i].length; j++){
+                    // 빙고 숫자 입력 예외처리!!!!!!
+                    if(isNaN(userNumArr[i][j]) || userNumArr[i][j] < 1 || userNumArr[i][j] > 25 || checkDup(userNumArr)){
+                        alert('1부터 25사이의 정수를 모든칸에 중복없이 입력해주세요!');
+                        return;
+                    };
+                };
+            };
+            // 사용자가 입력한 빙고숫자들을 확정받아 보여주는 함수 호출!
+            showInputNum(bingoTable);
+
+            // 등록 버튼 활성화
+            submitBtn.disabled = false;
+            choiceNumInput.focus();
+            choiceNumInput.value = '';
+            startBtn.disabled = true;
+        });
+
+       
+        submitBtn.addEventListener('click', function(){
+            let bingoCnt = 0;
+            let leftCrossZeroCnt = 0;
+            let rightCrossZeroCnt = 0;
+            userSubmitNum = Number(choiceNumInput.value);
+
+            console.log('유저넘어레이', userNumArr);
+            if(!Boolean(userSubmitNum) || userSubmitNum < 1 || userSubmitNum > 25){
+                choiceNumInput.focus();
+                choiceNumInput.value = '';
+                alert('1부터 25사이의 정수를 입력해 주세요!');
+                return;
+            }
+            isDup = true;
+            for(let i = 0; i < userNumArr.length; i++){
+                if(userNumArr[i].includes(userSubmitNum)){
+                    isDup = false;
+                    break;
+                };
+            };
+            if(isDup){
+                choiceNumInput.focus();
+                choiceNumInput.value = '';
+                alert('이미 해당숫자를 입력했습니다. 다른 숫자를 입력하세요!');
+                return;
+            };
+            // 배열에서 선택한 숫자를 0으로 바꿔주고 배경색 달라지는 클래스를 추가해주는 함수 호출
+            changeChoiceNum(userNumArr, userSubmitNum);
+            // 빙고숫자 세주는 함수 호출
+            bingoCnt = countBingo(userNumArr);
+
+            choiceNumInput.focus();
+            choiceNumInput.value = '';
+
+            if(bingoCnt > 4){
+                console.log('빙고달성!!!!!');
+                winGameDiv.style.display = 'flex';
+                return;
+            };
+        });
+        
+        /**--------------------------------------------------------------------------------------------------*/
+       
 
     </script>
 </body>
