@@ -10,7 +10,10 @@
 <body>
     <header><h1>빙고 게임</h1></header>
     <div class="winGame">
-        🎉축하합니다 승리하였습니다🎉    
+        🎉축하합니다. 승리하였습니다!🎉    
+    </div>
+    <div class="loseGame">
+        😩패배했습니다. 다시 한번 도전해보세요!😩
     </div>
     <div class="loseGame"></div>
     <main id="bingoGame">
@@ -31,43 +34,70 @@
         let tableCols;
         let tableInput;
         let inputNum;
-        let userNumArr;
-        let colNumArr;
+        let userNumArr = [];
+        let comNumArr = [];
+        let userColNumArr;
         let userSubmitNum;
         let choiceNumText;
         let bingoCnt;
         let leftCrossZeroCnt;
         let rightCrossZeroCnt;
         let isDup;
+        let num25Arr;
+        let comNumObj = {};
+        let comRowNumArr = [];
+        let comChoiceNum;
 
         // DOM
         let bgMainDiv = document.querySelector('#bingoGame');
         let userDiv = document.querySelector('.user');
         let computerDiv = document.querySelector('.computer');
         let winGameDiv = document.querySelector('.winGame');
+        let loseGameDiv = document.querySelector('.loseGame');
 
 
-        // 빙고게임 틀 만들기
-        let bingoTable = document.createElement('table');
-        bingoTable.setAttribute('class', 'bingoTable');
-        userDiv.appendChild(bingoTable);
-        let cnt = 1;
+        /**------------------------- 빙고게임 틀 만들기 ------------------------------*/ 
+        // 유저 빙고게임 틀
+        userDiv.innerHTML += `<h2>User</h2>`;
+        let userBingoTable = document.createElement('table');
+        userBingoTable.setAttribute('class', 'bingoTable userBingoTable');
+        userDiv.appendChild(userBingoTable);
+        let cnt1 = 1;
         for(let i = 0; i < 5; i++){
-            tableRow = document.createElement('tr');
-            tableRow.setAttribute('class', `row`);
-            bingoTable.appendChild(tableRow);
+            userTableRow = document.createElement('tr');
+            userTableRow.setAttribute('class', `row userRow`);
+            userBingoTable.appendChild(userTableRow);
             
             for(let j = 0; j < 5; j++){
-                tableCol = document.createElement('td');
-                tableCol.setAttribute('class', `col`);
-                tableRow.appendChild(tableCol);
+                userTableCol = document.createElement('td');
+                userTableCol.setAttribute('class', `col userCol`);
+                userTableRow.appendChild(userTableCol);
 
-                tableCol.innerHTML += 
-                `<input type="text" class="input input${i}${j}" value="${cnt}">`;
-                cnt++;                              
+                userTableCol.innerHTML += 
+                `<input type="text" class="input input${i}${j}" value="${cnt1}">`;
+                cnt1++;                              
             };
         };
-        
+
+        // 컴퓨터 빙고게임 틀
+        computerDiv.innerHTML += `<h2>Computer</h2>`
+        let comBingoTable = document.createElement('table');
+        comBingoTable.setAttribute('class', 'bingoTable comBingoTable');
+        computerDiv.appendChild(comBingoTable);
+        let cnt2 = 1;
+        for(let i = 0; i < 5; i++){
+            comTableRow = document.createElement('tr');
+            comTableRow.setAttribute('class', `row comRow`);
+            comBingoTable.appendChild(comTableRow);
+            
+            for(let j = 0; j < 5; j++){
+                comTableCol = document.createElement('td');
+                comTableCol.setAttribute('class', `col comCol comCol${i}${j}`);
+                comTableRow.appendChild(comTableCol);
+                             
+            };
+        };
+                
         // 게임 시작버튼 요소 추가
         let startBtn = document.createElement('button');
         startBtn.setAttribute('class', 'startBtn');
@@ -92,27 +122,27 @@
         
         /**-------------------------------------------------함수 모음---------------------------------------------------------*/
         // 이중배열에 사용자가 입력한 빙고번호를 추가시켜주는 함수
-        function addInputNum(_bingoTable){
-            tableRows = _bingoTable.childNodes;
+        function addInputNum(bingoTable){
+            tableRows = bingoTable.childNodes;
 
             tableRows.forEach(tableRow => {
                 tableCols = tableRow.childNodes;
-                colNumArr = [];
+                userColNumArr = [];
                 tableCols.forEach(tableCol => {
                     
                     tableInput = tableCol.firstChild;
                     inputNum = Number(tableInput.value);
-                    colNumArr.push(inputNum);
+                    userColNumArr.push(inputNum);
                     
                 });
-                console.log('colNumArr', colNumArr);
-                userNumArr.push(colNumArr);
+                console.log('userColNumArr', userColNumArr);
+                userNumArr.push(userColNumArr);
             });
         };
 
         // 사용자가 입력한 빙고숫자들을 확정받아 보여주는 함수
-        function showInputNum(_bingoTable){
-            tableRows = _bingoTable.childNodes;
+        function showInputNum(bingoTable){
+            tableRows = bingoTable.childNodes;
 
             tableRows.forEach(tableRow => {
                 tableCols = tableRow.childNodes;
@@ -121,52 +151,99 @@
                     tableInput = tableCol.firstChild;
   
                     tableInput.style.display = 'none';
-                    tableInput.parentNode.innerHTML += `<span class="confirmNum">${tableInput.value}</span>`;
+                    tableInput.parentNode.innerHTML += `<span class="userConfirmNum">${tableInput.value}</span>`;
                 });
             });
         };
         
         // 배열에서 선택한 숫자를 0으로 바꿔주고 배경색 달라지는 클래스를 추가해주는 함수!!
-        function changeChoiceNum(userNumArr, userSubmitNum){
+        function changeUserChoiceNum1(userNumArr, submitNum){
             for(let i = 0; i < userNumArr.length; i++){
                 for(let j = 0; j < userNumArr[i].length; j++){
                     // 유저가 제출한 숫자와 이전에 등록했던 숫자가 일치시 
-                    if(userSubmitNum === userNumArr[i][j]){
+                    if(submitNum === userNumArr[i][j]){
                         userNumArr[i][j] = 0;
                         choiceNumText = document.querySelector(`.input${i}${j}`).nextSibling;
                         
                         choiceNumText.parentNode.classList.add('check');
+                        
                     };
                 };
             };
         };
-        
+        function changeUserChoiceNum2(comNumArr, submitNum, comNumObj){
+            for(let i = 0; i < comNumArr.length; i++){
+                for(let j = 0; j < comNumArr[i].length; j++){
+                    // 유저가 제출한 숫자와 컴퓨터가 등록했던 숫자가 일치시 
+                    if(submitNum === comNumArr[i][j]){
+                        comNumArr[i][j] = 0;
+                        choiceNumText = document.querySelector(`.comCol${i}${j}`).firstChild;
+                        
+                        choiceNumText.parentNode.classList.add('check');
+                        
+                    };
+                };
+            };
+            for(let i = 0; i < Object.keys(comNumObj).length; i++){
+                for(let j = 0; j < comNumObj[i+1].length; j++){
+                    if(submitNum === comNumObj[i+1][j]){
+                        comNumObj[i+1][j] = 0;                        
+                    };
+                };
+            };
+        };
+        // 컴퓨터가 빙고숫자를 정하는 함수!!!!!!!(알고리즘)
+        function choiceComNum(comNumObj, submitCnt){
+                
+            comChoiceNum;
+            if(submitCnt === 1 && comNumObj[3][2] !== 0){
+                comChoiceNum = comNumObj[3][2];
+                changeUserChoiceNum1(userNumArr, comChoiceNum);
+                changeUserChoiceNum2(comNumArr, comChoiceNum, comNumObj);
+            }else{
+                let zeroCountArr = [];
+                for(let i = 1; i <= Object.keys(comNumObj).length; i++){
+                    let zeroCount = comNumObj[i].reduce((cnt, element) => cnt + (0 === element), 0);
+                    if(zeroCount === 5){
+                        zeroCount = -1;
+                    }
+                    zeroCountArr.push(zeroCount);
+                };
+                console.log('제로카운트 배열!!', zeroCountArr);
+                let maxNumIndex = zeroCountArr.indexOf(Math.max.apply(null, zeroCountArr));
+                comChoiceNum = comNumObj[maxNumIndex+1].find(num => num !== 0);
+
+                changeUserChoiceNum1(userNumArr, comChoiceNum);
+                changeUserChoiceNum2(comNumArr, comChoiceNum, comNumObj);
+            };
+            console.log('스플라이스 후 컴퓨터숫자 객체 확인 > ', comNumObj);
+        };
 
         // 빙고 숫자 세주는 함수!!!!!!!!
-        function countBingo(userNumArr){
+        function countBingo(numArr){
             bingoCnt = 0;
             leftCrossZeroCnt = 0;
             rightCrossZeroCnt = 0;
 
-            for(let i = 0; i < userNumArr.length; i++){
+            for(let i = 0; i < numArr.length; i++){
                 let rowZeroCnt = 0;
 
                 // 왼쪽 대각 0 숫자 세기
-                if(userNumArr[i][i] === 0){
+                if(numArr[i][i] === 0){
                     leftCrossZeroCnt++;
                 };
                 // 오른 쪽 대각 0 숫자 세기
-                if(userNumArr[i][userNumArr.length - (i+1)] === 0){
+                if(numArr[i][numArr.length - (i+1)] === 0){
                     rightCrossZeroCnt++;
                 };
                 // 열 0 숫자 세기
-                for(let j = 0; j < userNumArr[i].length; j++){
-                    if(userNumArr[j][i] === 0){
+                for(let j = 0; j < numArr[i].length; j++){
+                    if(numArr[j][i] === 0){
                         rowZeroCnt++;
                     };
                 };
                 // 행 빙고카운트
-                if((userNumArr[i].filter(item => item === 0)).length === 5){
+                if((numArr[i].filter(item => item === 0)).length === 5){
                     bingoCnt++;
                 };
                 // 열 빙고 카운트
@@ -182,7 +259,6 @@
                     bingoCnt++;
                 };
             };            
-            console.log('bingoCnt', bingoCnt);
             return bingoCnt;
         };
 
@@ -202,7 +278,51 @@
             return isDup;
         };
 
+        // 컴퓨터가 랜덤으로 생성한 숫자를 배열에 담고 컴퓨터 빙고판에 보여주는 함수
+        function addComRanNum(bingoTable){
+            num25Arr = [];
+            for(let i = 1; i <= 25; i++){
+                num25Arr.push(i);
+            };
+            tableRows = bingoTable.childNodes;
 
+            tableRows.forEach(tableRow => {
+                tableCols = tableRow.childNodes;
+                comColNumArr = [];
+                tableCols.forEach(tableCol => {
+
+                    let comRanNum = num25Arr.splice(Math.floor(Math.random() * num25Arr.length), 1)[0];
+                    comColNumArr.push(comRanNum);
+                    tableCol.innerHTML = `<span class="comConfirmNum">${comRanNum}</span>`;
+                    
+                });
+                console.log('comColNumArr', comColNumArr);
+                comNumArr.push(comColNumArr);
+            });
+            console.log('컴퓨터 전체 숫자 배열', comNumArr);
+
+
+            comNumObj = {};
+            let comLeftCrossNumArr = [];
+            let comRightCrossNumArr = [];
+            for(let i = 0; i < comNumArr.length; i++){
+                let comRowNumArr = [];
+
+                for(let j = 0; j < comNumArr[i].length; j++){
+                    comRowNumArr.push(comNumArr[j][i]);
+                };
+                
+                comLeftCrossNumArr.push(comNumArr[i][i]);
+                comRightCrossNumArr.push(comNumArr[i][comNumArr.length - (i+1)]);
+
+                comNumObj[i+1] = [...comNumArr[i]];
+                comNumObj[i+6] = comRowNumArr;               
+            };
+            comNumObj[11] = comLeftCrossNumArr;
+            comNumObj[12] = comRightCrossNumArr;
+
+            console.log('컴퓨터랜덤숫자 객체 >>>', comNumObj);
+        };
 
 
 
@@ -214,9 +334,9 @@
         startBtn.addEventListener('click', function(){
 
             userNumArr = [];
-            addInputNum(bingoTable);
+            addInputNum(userBingoTable);
             console.log('전체 배열', userNumArr);
-            console.log('col배열', colNumArr);
+            console.log('col배열', userColNumArr);
             console.log('함수 확인하기', checkDup(userNumArr));
             for(let i = 0; i < userNumArr.length; i++){
                 for(let j = 0; j < userNumArr[i].length; j++){
@@ -228,7 +348,9 @@
                 };
             };
             // 사용자가 입력한 빙고숫자들을 확정받아 보여주는 함수 호출!
-            showInputNum(bingoTable);
+            showInputNum(userBingoTable);
+            // 컴퓨터가 랜덤으로 생성한 숫자를 배열에 담고 컴퓨터 빙고판에 보여주는 함수 호출!!
+            addComRanNum(comBingoTable);
 
             // 등록 버튼 활성화
             submitBtn.disabled = false;
@@ -237,9 +359,9 @@
             startBtn.disabled = true;
         });
 
-       
+        let submitCnt = 0;
         submitBtn.addEventListener('click', function(){
-            let bingoCnt = 0;
+            submitCnt++;
             let leftCrossZeroCnt = 0;
             let rightCrossZeroCnt = 0;
             userSubmitNum = Number(choiceNumInput.value);
@@ -264,21 +386,39 @@
                 alert('이미 해당숫자를 입력했습니다. 다른 숫자를 입력하세요!');
                 return;
             };
-            // 배열에서 선택한 숫자를 0으로 바꿔주고 배경색 달라지는 클래스를 추가해주는 함수 호출
-            changeChoiceNum(userNumArr, userSubmitNum);
-            // 빙고숫자 세주는 함수 호출
-            bingoCnt = countBingo(userNumArr);
+            /** 배열에서 선택한 숫자를 0으로 바꿔주고 배경색 달라지는 클래스를 추가해주는 함수 호출 */
+            // 유저 빙고게임테이블
+            changeUserChoiceNum1(userNumArr, userSubmitNum);
+            // 컴퓨터 빙고 게임 테이블
+            changeUserChoiceNum2(comNumArr, userSubmitNum, comNumObj);
+            /**-----------------------------------------------------------------------------------*/
+            console.log('sssssss33333', comNumObj);
 
+            setTimeout(() => choiceComNum(comNumObj, submitCnt), 800);
+            
+
+            // 유저 빙고숫자 세주는 함수 호출
+            let userBingoCnt = countBingo(userNumArr);
+            console.log('유저 bingoCnt', userBingoCnt);
+            // 컴퓨터 빙고숫자 세주는 함수 홀출
+            let comBingoCnt = countBingo(comNumArr);
+            console.log('컴퓨터 bingoCnt', comBingoCnt);
+            
             choiceNumInput.focus();
             choiceNumInput.value = '';
 
-            if(bingoCnt > 4){
-                console.log('빙고달성!!!!!');
+            if(userBingoCnt >= 5){
                 winGameDiv.style.display = 'flex';
+                computerDiv.style.display = 'flex';
                 return;
             };
-        });
-        
+            if(comBingoCnt >= 5){
+                loseGameDiv.style.display = 'flex';
+                computerDiv.style.display = 'flex';
+                return;
+            };
+            
+        });        
         /**--------------------------------------------------------------------------------------------------*/
        
 

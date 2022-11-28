@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <script>console.log(Boolean(0));</script>    
+    <script>
+    let zeroCountArr = [0, 3, 7, 8, 3, 4, 2, 5, 9];
+    let maxIndex = zeroCountArr.indexOf(Math.max.apply(null, zeroCountArr));
+    console.log('maxIndex', maxIndex);
+    
+    </script>    
 </body>
 </html>

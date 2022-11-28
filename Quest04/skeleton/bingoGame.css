@@ -10,7 +10,7 @@ body{
     top: 0;
 
 }
-.winGame{
+.winGame, .loseGame{
     display: none;
     justify-content: center;
     align-items:  center;
@@ -18,12 +18,29 @@ body{
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     left: 0;
     top: 0;
     color: #fff;
     font-size: 50px;
     z-index: 10;
+}
+#bingoGame{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.user{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+}
+.computer{
+    display: flex;
+    align-items:  center;
+    flex-direction: column;
 }
 .col{
     position: relative;
@@ -32,7 +49,7 @@ body{
     height: 75px;
 
 }
-.confirmNum{
+.userConfirmNum{
     display: flex;
     justify-content: center;
     align-items:  center;
@@ -57,12 +74,7 @@ body{
     font-size: 20px;
     font-weight: bold;
 }
-.user{
-    display: flex;
-    justify-content: center;
-    align-items:  center;
-    flex-direction: column;
-}
+
 .startBtn{
     margin: 5px;
     
@@ -79,6 +91,18 @@ body{
     font-size: 18px;
     font-weight: bold;
     
+}
+.comConfirmNum{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    margin-left: 5px;
+    padding: 10px 0px 10px 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .submitBtn{
     margin: 5px;
